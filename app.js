@@ -99,18 +99,22 @@ document.addEventListener('DOMContentLoaded', () => {
   startRefreshTimer();
 });
 
+const PRONOTE_ICS = 'https://0380092u.index-education.net/pronote/ical/Edt_bugnonalexandre.ics?icalsecurise=1D398D4CD7EFE72BE078FCC71D5577FF6BC5AE899764C90D694E28A6E2065EF843B13A6D102CA3BE7BB71C78D394B481&version=2026.2.5.7&param=C96F40C77C638122BE110F0A28794C7A';
+
 function loadSavedConfig() {
   const saved = localStorage.getItem('goodmorning_schedule_config');
   if (saved) {
     try {
       const parsed = JSON.parse(saved);
       state.weeklySchedule = parsed.schedule || JSON.parse(JSON.stringify(CONFIG.defaultWeeklySchedule));
-      state.pronoteUrl = parsed.pronoteUrl || '';
+      state.pronoteUrl = parsed.pronoteUrl || PRONOTE_ICS;
     } catch (e) {
       state.weeklySchedule = JSON.parse(JSON.stringify(CONFIG.defaultWeeklySchedule));
+      state.pronoteUrl = PRONOTE_ICS;
     }
   } else {
     state.weeklySchedule = JSON.parse(JSON.stringify(CONFIG.defaultWeeklySchedule));
+    state.pronoteUrl = PRONOTE_ICS;
   }
 }
 
@@ -309,7 +313,8 @@ async function fetchAllData(manual = false) {
   try {
     await Promise.all([
       fetchBusC13Data(),
-      fetchWeatherData()
+      fetchWeatherData(),
+      fetchPronoteSchedule()
     ]);
 
     renderSchedule();
@@ -327,6 +332,135 @@ async function fetchAllData(manual = false) {
       setTimeout(() => refreshIcon.classList.remove('spinning'), 500);
     }
   }
+}
+
+// ==========================================================================
+// PRONOTE iCal
+// ==========================================================================
+async function fetchPronoteSchedule() {
+  const url = state.pronoteUrl || PRONOTE_ICS;
+  if (!url) return;
+
+  try {
+    const proxies = [
+      `https://corsproxy.io/?${encodeURIComponent(url)}`,
+      `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`
+    ];
+    let icsText = null;
+    for (const proxyUrl of proxies) {
+      try {
+        const res = await fetch(proxyUrl);
+        if (!res.ok) continue;
+        const ct = res.headers.get('content-type') || '';
+        icsText = ct.includes('json') ? (await res.json()).contents : await res.text();
+        if (icsText && icsText.includes('BEGIN:VCALENDAR')) break;
+        icsText = null;
+      } catch (e) { continue; }
+    }
+    if (!icsText) return;
+
+    const events = parseIcs(icsText);
+    buildScheduleFromEvents(events);
+  } catch (err) {
+    console.error('Erreur Pronote iCal:', err);
+  }
+}
+
+function parseIcs(text) {
+  const events = [];
+  const lines = text.replace(/\r\n /g, '').replace(/\r\n/g, '\n').split('\n');
+  let current = null;
+
+  for (const line of lines) {
+    if (line === 'BEGIN:VEVENT') { current = {}; continue; }
+    if (line === 'END:VEVENT' && current) { events.push(current); current = null; continue; }
+    if (!current) continue;
+
+    const colon = line.indexOf(':');
+    if (colon === -1) continue;
+    const key = line.substring(0, colon).split(';')[0];
+    const val = line.substring(colon + 1);
+
+    if (key === 'DTSTART') current.start = parseIcsDate(line.substring(colon + 1), line);
+    else if (key === 'DTEND') current.end = parseIcsDate(line.substring(colon + 1), line);
+    else if (key === 'SUMMARY') current.summary = val.replace(/\\,/g, ',').trim();
+    else if (key === 'LOCATION') current.location = val.replace(/\\,/g, ',').trim();
+    else if (key === 'DESCRIPTION') current.description = val.replace(/\\,/g, ',').replace(/\\n/g, ' ').trim();
+  }
+  return events.filter(e => e.start && e.end && e.summary);
+}
+
+function parseIcsDate(val, fullLine) {
+  // Format: 20250115T080000Z ou 20250115T080000 avec TZID
+  const clean = val.replace('Z', '');
+  const isUTC = val.endsWith('Z');
+  const y = clean.substring(0,4), mo = clean.substring(4,6), d = clean.substring(6,8);
+  const h = clean.substring(9,11), mi = clean.substring(11,13), s = clean.substring(13,15) || '00';
+  const dt = new Date(`${y}-${mo}-${d}T${h}:${mi}:${s}${isUTC ? 'Z' : ''}`);
+  return isNaN(dt) ? null : dt;
+}
+
+function buildScheduleFromEvents(events) {
+  // Construire un emploi du temps sur 14 jours à partir d'aujourd'hui
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const limit = new Date(today);
+  limit.setDate(limit.getDate() + 14);
+
+  // Grouper par date
+  const byDate = {};
+  for (const ev of events) {
+    if (!ev.start || ev.start < today || ev.start > limit) continue;
+    const dateKey = ev.start.toLocaleDateString('fr-FR');
+    if (!byDate[dateKey]) byDate[dateKey] = { date: new Date(ev.start), courses: [] };
+    byDate[dateKey].courses.push(ev);
+  }
+
+  // Reconstruire state.weeklySchedule pour aujourd'hui et demain
+  for (let offset = 0; offset <= 1; offset++) {
+    const d = new Date(today);
+    d.setDate(d.getDate() + offset);
+    const dayKey = d.getDay(); // 0=dim, 1=lun...
+    const dateKey = d.toLocaleDateString('fr-FR');
+    const dayData = byDate[dateKey];
+
+    if (!dayData || dayData.courses.length === 0) {
+      state.weeklySchedule[dayKey] = { ...state.weeklySchedule[dayKey], startTime: null, courses: [] };
+      continue;
+    }
+
+    dayData.courses.sort((a, b) => a.start - b.start);
+    const firstCourse = dayData.courses[0];
+    const startTime = `${String(firstCourse.start.getHours()).padStart(2,'0')}:${String(firstCourse.start.getMinutes()).padStart(2,'0')}`;
+
+    const courses = dayData.courses.map(ev => {
+      const sh = String(ev.start.getHours()).padStart(2,'0');
+      const sm = String(ev.start.getMinutes()).padStart(2,'0');
+      const eh = String(ev.end.getHours()).padStart(2,'0');
+      const em = String(ev.end.getMinutes()).padStart(2,'0');
+      return {
+        time: `${sh}:${sm} - ${eh}:${em}`,
+        subject: ev.summary,
+        room: ev.location || '',
+        teacher: ev.description || '',
+        code: guessCode(ev.summary)
+      };
+    });
+
+    state.weeklySchedule[dayKey] = { ...state.weeklySchedule[dayKey], startTime, courses };
+  }
+}
+
+function guessCode(subject) {
+  const s = subject.toLowerCase();
+  if (s.includes('math')) return 'maths';
+  if (s.includes('physique') || s.includes('chimie') || s.includes('pc')) return 'physique';
+  if (s.includes('svt') || s.includes('science')) return 'svt';
+  if (s.includes('hist') || s.includes('géo')) return 'histoire';
+  if (s.includes('français') || s.includes('francais')) return 'francais';
+  if (s.includes('anglais') || s.includes('espagnol') || s.includes('lv')) return 'anglais';
+  if (s.includes('eps') || s.includes('sport')) return 'eps';
+  return 'maths';
 }
 
 // ==========================================================================
