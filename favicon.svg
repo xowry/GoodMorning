@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#ef7c00"/>
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="46" fill="#0b0f19" stroke="#ef7c00" stroke-width="4"/>
+  <circle cx="50" cy="45" r="22" fill="url(#sunGrad)"/>
+  <path d="M 20 75 L 80 75" stroke="#22d3ee" stroke-width="6" stroke-linecap="round"/>
+  <path d="M 30 85 L 70 85" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
+</svg>

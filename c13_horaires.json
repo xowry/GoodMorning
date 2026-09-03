@@ -1,0 +1,2212 @@
+﻿{
+    "0":  {
+              "arrets":  [
+                             {
+                                 "stopId":  "SE2:2403",
+                                 "trips":  [
+                                               36900,
+                                               38700,
+                                               40500,
+                                               42300
+                                           ],
+                                 "stopName":  "Vizille, Chantefeuille",
+                                 "name":  "Chantefeuille",
+                                 "city":  "Vizille",
+                                 "lat":  45.08039,
+                                 "lon":  5.77513,
+                                 "parentStation":  {
+                                                       "id":  "SE2:CHANT",
+                                                       "code":  "SE2:CHANT",
+                                                       "city":  "Vizille",
+                                                       "name":  "Chantefeuille",
+                                                       "visible":  false,
+                                                       "lat":  45.08052,
+                                                       "lon":  5.77493
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2404",
+                                 "trips":  [
+                                               36958,
+                                               38758,
+                                               40558,
+                                               42358
+                                           ],
+                                 "stopName":  "Vizille, L\u0027Alliance",
+                                 "name":  "L\u0027Alliance",
+                                 "city":  "Vizille",
+                                 "lat":  45.08187,
+                                 "lon":  5.76903,
+                                 "parentStation":  {
+                                                       "id":  "SE2:ALI",
+                                                       "code":  "SE2:ALI",
+                                                       "city":  "Vizille",
+                                                       "name":  "L\u0027Alliance",
+                                                       "visible":  false,
+                                                       "lat":  45.08159,
+                                                       "lon":  5.76886
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:4852",
+                                 "trips":  [
+                                               37200,
+                                               39000,
+                                               40800,
+                                               42600
+                                           ],
+                                 "stopName":  "Jarrie, Jarrie Gare",
+                                 "name":  "Jarrie Gare",
+                                 "city":  "Jarrie",
+                                 "lat":  45.08418,
+                                 "lon":  5.74185,
+                                 "parentStation":  {
+                                                       "id":  "SE2:GARJA",
+                                                       "code":  "SE2:GARJA",
+                                                       "city":  "Jarrie",
+                                                       "name":  "Jarrie Gare",
+                                                       "visible":  true,
+                                                       "lat":  45.08482,
+                                                       "lon":  5.74234
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:4894",
+                                 "trips":  [
+                                               37294,
+                                               39094,
+                                               40894,
+                                               42694
+                                           ],
+                                 "stopName":  "Jarrie, Pont de Champ",
+                                 "name":  "Pont de Champ",
+                                 "city":  "Jarrie",
+                                 "lat":  45.08871,
+                                 "lon":  5.73063,
+                                 "parentStation":  {
+                                                       "id":  "SE2:PONC",
+                                                       "code":  "SE2:PONC",
+                                                       "city":  "Champ-sur-Drac",
+                                                       "name":  "Pont de Champ",
+                                                       "visible":  false,
+                                                       "lat":  45.08815,
+                                                       "lon":  5.73062
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2393",
+                                 "trips":  [
+                                               37400,
+                                               39200,
+                                               41000,
+                                               42800
+                                           ],
+                                 "stopName":  "Champagnier, Saut du Moine",
+                                 "name":  "Saut du Moine",
+                                 "city":  "Champagnier",
+                                 "lat":  45.0957,
+                                 "lon":  5.72064,
+                                 "parentStation":  {
+                                                       "id":  "SE2:SDM",
+                                                       "code":  "SE2:SDM",
+                                                       "city":  "Champagnier",
+                                                       "name":  "Saut du Moine",
+                                                       "visible":  false,
+                                                       "lat":  45.09518,
+                                                       "lon":  5.72088
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:1414",
+                                 "trips":  [
+                                               37619,
+                                               39419,
+                                               41219,
+                                               43019
+                                           ],
+                                 "stopName":  "Le Pont-de-Claix, Beau Site",
+                                 "name":  "Beau Site",
+                                 "city":  "Le Pont-de-Claix",
+                                 "lat":  45.11403,
+                                 "lon":  5.70586,
+                                 "parentStation":  {
+                                                       "id":  "SE2:PDCBSI",
+                                                       "code":  "SE2:PDCBSI",
+                                                       "city":  "Le Pont-de-Claix",
+                                                       "name":  "Beau Site",
+                                                       "visible":  false,
+                                                       "lat":  45.11395,
+                                                       "lon":  5.70576
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:1412",
+                                 "trips":  [
+                                               37669,
+                                               39469,
+                                               41269,
+                                               43069
+                                           ],
+                                 "stopName":  "Le Pont-de-Claix, Les Deux Ponts",
+                                 "name":  "Les Deux Ponts",
+                                 "city":  "Le Pont-de-Claix",
+                                 "lat":  45.11813,
+                                 "lon":  5.70239,
+                                 "parentStation":  {
+                                                       "id":  "SE2:LDP",
+                                                       "code":  "SE2:LDP",
+                                                       "city":  "Le Pont-de-Claix",
+                                                       "name":  "Les Deux Ponts",
+                                                       "visible":  false,
+                                                       "lat":  45.11798,
+                                                       "lon":  5.70249
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:1842",
+                                 "trips":  [
+                                               37740,
+                                               39540,
+                                               41340,
+                                               43140
+                                           ],
+                                 "stopName":  "Le Pont-de-Claix, Le Pont-de-Claix Mairie",
+                                 "name":  "Le Pont-de-Claix Mairie",
+                                 "city":  "Le Pont-de-Claix",
+                                 "lat":  45.12371,
+                                 "lon":  5.69767,
+                                 "parentStation":  {
+                                                       "id":  "SE2:PCM",
+                                                       "code":  "SE2:PCM",
+                                                       "city":  "Le Pont-de-Claix",
+                                                       "name":  "Le Pont-de-Claix Mairie",
+                                                       "visible":  false,
+                                                       "lat":  45.12309,
+                                                       "lon":  5.69799
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:4937",
+                                 "trips":  [
+                                               37880,
+                                               39680,
+                                               41480,
+                                               43280
+                                           ],
+                                 "stopName":  "Le Pont-de-Claix, Iles de Mars",
+                                 "name":  "Iles de Mars",
+                                 "city":  "Le Pont-de-Claix",
+                                 "lat":  45.13197,
+                                 "lon":  5.70026,
+                                 "parentStation":  {
+                                                       "id":  "SE2:ILE",
+                                                       "code":  "SE2:ILE",
+                                                       "city":  "Le Pont-de-Claix",
+                                                       "name":  "Iles de Mars",
+                                                       "visible":  false,
+                                                       "lat":  45.13183,
+                                                       "lon":  5.7001
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:1205",
+                                 "trips":  [
+                                               37980,
+                                               39780,
+                                               41580,
+                                               43380
+                                           ],
+                                 "stopName":  "Le Pont-de-Claix, L\u0027Étoile",
+                                 "name":  "L\u0027Étoile",
+                                 "city":  "Le Pont-de-Claix",
+                                 "lat":  45.13788,
+                                 "lon":  5.70229,
+                                 "parentStation":  {
+                                                       "id":  "SE2:ETOILE",
+                                                       "code":  "SE2:ETOILE",
+                                                       "city":  "Le Pont-de-Claix",
+                                                       "name":  "L\u0027Étoile",
+                                                       "visible":  false,
+                                                       "lat":  45.13785,
+                                                       "lon":  5.70362
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:1209",
+                                 "trips":  [
+                                               38125,
+                                               39925,
+                                               41725,
+                                               43525
+                                           ],
+                                 "stopName":  "Échirolles, Bayard",
+                                 "name":  "Bayard",
+                                 "city":  "Échirolles",
+                                 "lat":  45.14643,
+                                 "lon":  5.70516,
+                                 "parentStation":  {
+                                                       "id":  "SE2:BAY",
+                                                       "code":  "SE2:BAY",
+                                                       "city":  "Échirolles",
+                                                       "name":  "Bayard",
+                                                       "visible":  false,
+                                                       "lat":  45.14606,
+                                                       "lon":  5.70464
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:1216",
+                                 "trips":  [
+                                               38214,
+                                               40014,
+                                               41814,
+                                               43614
+                                           ],
+                                 "stopName":  "Échirolles, Quinzaine",
+                                 "name":  "Quinzaine",
+                                 "city":  "Échirolles",
+                                 "lat":  45.15166,
+                                 "lon":  5.70693,
+                                 "parentStation":  {
+                                                       "id":  "SE2:QUIN",
+                                                       "code":  "SE2:QUIN",
+                                                       "city":  "Échirolles",
+                                                       "name":  "Quinzaine",
+                                                       "visible":  false,
+                                                       "lat":  45.15157,
+                                                       "lon":  5.70676
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:0723",
+                                 "trips":  [
+                                               38377,
+                                               40177,
+                                               41977,
+                                               43777
+                                           ],
+                                 "stopName":  "Grenoble, Marielle Franco – Technisud",
+                                 "name":  "Marielle Franco – Technisud",
+                                 "city":  "Grenoble",
+                                 "lat":  45.16119,
+                                 "lon":  5.71014,
+                                 "parentStation":  {
+                                                       "id":  "SE2:RON",
+                                                       "code":  "SE2:RON",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Marielle Franco – Technisud",
+                                                       "visible":  false,
+                                                       "lat":  45.16071,
+                                                       "lon":  5.70985
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:4678",
+                                 "trips":  [
+                                               38423,
+                                               40223,
+                                               42023,
+                                               43823
+                                           ],
+                                 "stopName":  "Grenoble, Stade Lesdiguières",
+                                 "name":  "Stade Lesdiguières",
+                                 "city":  "Grenoble",
+                                 "lat":  45.1639,
+                                 "lon":  5.71106,
+                                 "parentStation":  {
+                                                       "id":  "SE2:LESD",
+                                                       "code":  "SE2:LESD",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Stade Lesdiguières",
+                                                       "visible":  false,
+                                                       "lat":  45.1642,
+                                                       "lon":  5.71078
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:0716",
+                                 "trips":  [
+                                               38520,
+                                               40320,
+                                               42120,
+                                               43920
+                                           ],
+                                 "stopName":  "Grenoble, Louise Michel",
+                                 "name":  "Louise Michel",
+                                 "city":  "Grenoble",
+                                 "lat":  45.16955,
+                                 "lon":  5.71293,
+                                 "parentStation":  {
+                                                       "id":  "SE2:LMG",
+                                                       "code":  "SE2:LMG",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Louise Michel",
+                                                       "visible":  false,
+                                                       "lat":  45.1696,
+                                                       "lon":  5.71281
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:4305",
+                                 "trips":  [
+                                               38622,
+                                               40422,
+                                               42222,
+                                               44022
+                                           ],
+                                 "stopName":  "Grenoble, Alliés",
+                                 "name":  "Alliés",
+                                 "city":  "Grenoble",
+                                 "lat":  45.17334,
+                                 "lon":  5.71421,
+                                 "parentStation":  {
+                                                       "id":  "SE2:AAF",
+                                                       "code":  "SE2:AAF",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Alliés",
+                                                       "visible":  false,
+                                                       "lat":  45.17404,
+                                                       "lon":  5.71422
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:4307",
+                                 "trips":  [
+                                               38777,
+                                               40577,
+                                               42377,
+                                               44177
+                                           ],
+                                 "stopName":  "Grenoble, Vallier – Libération",
+                                 "name":  "Vallier – Libération",
+                                 "city":  "Grenoble",
+                                 "lat":  45.17906,
+                                 "lon":  5.71617,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VLI",
+                                                       "code":  "SE2:VLI",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Vallier – Libération",
+                                                       "visible":  false,
+                                                       "lat":  45.17979,
+                                                       "lon":  5.7157
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:4874",
+                                 "trips":  [
+                                               39030,
+                                               40830,
+                                               42630,
+                                               44430
+                                           ],
+                                 "stopName":  "Grenoble, Alsace-Lorraine",
+                                 "name":  "Alsace-Lorraine",
+                                 "city":  "Grenoble",
+                                 "lat":  45.18838,
+                                 "lon":  5.71933,
+                                 "parentStation":  {
+                                                       "id":  "SE2:AL",
+                                                       "code":  "SE2:AL",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Alsace-Lorraine",
+                                                       "visible":  false,
+                                                       "lat":  45.18888,
+                                                       "lon":  5.71961
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2352",
+                                 "trips":  [
+                                               39240,
+                                               41040,
+                                               42840,
+                                               44640
+                                           ],
+                                 "stopName":  "Grenoble, Gares",
+                                 "name":  "Gares",
+                                 "city":  "Grenoble",
+                                 "lat":  45.19235,
+                                 "lon":  5.71489,
+                                 "parentStation":  {
+                                                       "id":  "SE2:GAR",
+                                                       "code":  "SE2:GAR",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Gares",
+                                                       "visible":  false,
+                                                       "lat":  45.19121,
+                                                       "lon":  5.71509
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:4895",
+                                 "trips":  [
+                                               "|",
+                                               41160,
+                                               "|",
+                                               44760
+                                           ],
+                                 "stopName":  "Grenoble, Gare Routière",
+                                 "name":  "Gare Routière",
+                                 "city":  "Grenoble",
+                                 "lat":  45.19298,
+                                 "lon":  5.7143,
+                                 "parentStation":  {
+                                                       "id":  "SE2:GARO",
+                                                       "code":  "SE2:GARO",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Gare Routière",
+                                                       "visible":  false,
+                                                       "lat":  45.19298,
+                                                       "lon":  5.7143
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:4383",
+                                 "trips":  [
+                                               39501,
+                                               "|",
+                                               43101,
+                                               "|"
+                                           ],
+                                 "stopName":  "Grenoble, Durand-Savoyat",
+                                 "name":  "Durand-Savoyat",
+                                 "city":  "Grenoble",
+                                 "lat":  45.19885,
+                                 "lon":  5.70915,
+                                 "parentStation":  {
+                                                       "id":  "SE2:DS",
+                                                       "code":  "SE2:DS",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Durand-Savoyat",
+                                                       "visible":  false,
+                                                       "lat":  45.19895,
+                                                       "lon":  5.71046
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:5059",
+                                 "trips":  [
+                                               39608,
+                                               "|",
+                                               43208,
+                                               "|"
+                                           ],
+                                 "stopName":  "Grenoble, Marie-Louise Paris – CEA",
+                                 "name":  "Marie-Louise Paris – CEA",
+                                 "city":  "Grenoble",
+                                 "lat":  45.20289,
+                                 "lon":  5.70386,
+                                 "parentStation":  {
+                                                       "id":  "SE2:CEA",
+                                                       "code":  "SE2:CEA",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Marie-Louise Paris – CEA",
+                                                       "visible":  false,
+                                                       "lat":  45.20248,
+                                                       "lon":  5.70411
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2389",
+                                 "trips":  [
+                                               39660,
+                                               "|",
+                                               43260,
+                                               "|"
+                                           ],
+                                 "stopName":  "Grenoble, Oxford",
+                                 "name":  "Oxford",
+                                 "city":  "Grenoble",
+                                 "lat":  45.20484,
+                                 "lon":  5.70127,
+                                 "parentStation":  {
+                                                       "id":  "SE2:OXF",
+                                                       "code":  "SE2:OXF",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Oxford",
+                                                       "visible":  false,
+                                                       "lat":  45.20585,
+                                                       "lon":  5.6997
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2400",
+                                 "trips":  [
+                                               39960,
+                                               "|",
+                                               43560,
+                                               "|"
+                                           ],
+                                 "stopName":  "Saint-Égrève, San Marino – Barrage",
+                                 "name":  "San Marino – Barrage",
+                                 "city":  "Saint-Égrève",
+                                 "lat":  45.23674,
+                                 "lon":  5.66313,
+                                 "parentStation":  {
+                                                       "id":  "SE2:SMA",
+                                                       "code":  "SE2:SMA",
+                                                       "city":  "Saint-Égrève",
+                                                       "name":  "San Marino – Barrage",
+                                                       "visible":  true,
+                                                       "lat":  45.23646,
+                                                       "lon":  5.66203
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:1294",
+                                 "trips":  [
+                                               40042,
+                                               "|",
+                                               43642,
+                                               "|"
+                                           ],
+                                 "stopName":  "Saint-Égrève, Cap 38",
+                                 "name":  "Cap 38",
+                                 "city":  "Saint-Égrève",
+                                 "lat":  45.24007,
+                                 "lon":  5.66683,
+                                 "parentStation":  {
+                                                       "id":  "SE2:ZI",
+                                                       "code":  "SE2:ZI",
+                                                       "city":  "Saint-Égrève",
+                                                       "name":  "Cap 38",
+                                                       "visible":  false,
+                                                       "lat":  45.24024,
+                                                       "lon":  5.66672
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2384",
+                                 "trips":  [
+                                               40287,
+                                               "|",
+                                               43887,
+                                               "|"
+                                           ],
+                                 "stopName":  "Fontanil-Cornillon, LEP Françoise Dolto",
+                                 "name":  "LEP Françoise Dolto",
+                                 "city":  "Fontanil-Cornillon",
+                                 "lat":  45.25061,
+                                 "lon":  5.66494,
+                                 "parentStation":  {
+                                                       "id":  "SE2:DOLTO",
+                                                       "code":  "SE2:DOLTO",
+                                                       "city":  "Fontanil-Cornillon",
+                                                       "name":  "LEP Françoise Dolto",
+                                                       "visible":  false,
+                                                       "lat":  45.25002,
+                                                       "lon":  5.66526
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2386",
+                                 "trips":  [
+                                               40380,
+                                               "|",
+                                               43980,
+                                               "|"
+                                           ],
+                                 "stopName":  "Fontanil-Cornillon, Palluel",
+                                 "name":  "Palluel",
+                                 "city":  "Fontanil-Cornillon",
+                                 "lat":  45.25502,
+                                 "lon":  5.66173,
+                                 "parentStation":  {
+                                                       "id":  "SE2:FTL",
+                                                       "code":  "SE2:FTL",
+                                                       "city":  "Fontanil-Cornillon",
+                                                       "name":  "Palluel",
+                                                       "visible":  false,
+                                                       "lat":  45.25492,
+                                                       "lon":  5.66164
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2382",
+                                 "trips":  [
+                                               40419,
+                                               "|",
+                                               44019,
+                                               "|"
+                                           ],
+                                 "stopName":  "Fontanil-Cornillon, Croix de la Rochette",
+                                 "name":  "Croix de la Rochette",
+                                 "city":  "Fontanil-Cornillon",
+                                 "lat":  45.25875,
+                                 "lon":  5.65929,
+                                 "parentStation":  {
+                                                       "id":  "SE2:FOT",
+                                                       "code":  "SE2:FOT",
+                                                       "city":  "Fontanil-Cornillon",
+                                                       "name":  "Croix de la Rochette",
+                                                       "visible":  true,
+                                                       "lat":  45.25845,
+                                                       "lon":  5.65938
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2418",
+                                 "trips":  [
+                                               40466,
+                                               "|",
+                                               44066,
+                                               "|"
+                                           ],
+                                 "stopName":  "Voreppe, Logis Neuf",
+                                 "name":  "Logis Neuf",
+                                 "city":  "Voreppe",
+                                 "lat":  45.2633,
+                                 "lon":  5.65663,
+                                 "parentStation":  {
+                                                       "id":  "SE2:LN",
+                                                       "code":  "SE2:LN",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Logis Neuf",
+                                                       "visible":  true,
+                                                       "lat":  45.26347,
+                                                       "lon":  5.65645
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2408",
+                                 "trips":  [
+                                               40517,
+                                               "|",
+                                               44117,
+                                               "|"
+                                           ],
+                                 "stopName":  "Voreppe, Bascule",
+                                 "name":  "Bascule",
+                                 "city":  "Voreppe",
+                                 "lat":  45.26822,
+                                 "lon":  5.65381,
+                                 "parentStation":  {
+                                                       "id":  "SE2:BASC",
+                                                       "code":  "SE2:BASC",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Bascule",
+                                                       "visible":  true,
+                                                       "lat":  45.2681,
+                                                       "lon":  5.6538
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2410",
+                                 "trips":  [
+                                               40576,
+                                               "|",
+                                               44176,
+                                               "|"
+                                           ],
+                                 "stopName":  "Voreppe, Café adrait",
+                                 "name":  "Café adrait",
+                                 "city":  "Voreppe",
+                                 "lat":  45.274,
+                                 "lon":  5.65053,
+                                 "parentStation":  {
+                                                       "id":  "SE2:CAA",
+                                                       "code":  "SE2:CAA",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Café adrait",
+                                                       "visible":  false,
+                                                       "lat":  45.27377,
+                                                       "lon":  5.65055
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2416",
+                                 "trips":  [
+                                               40620,
+                                               "|",
+                                               44220,
+                                               "|"
+                                           ],
+                                 "stopName":  "Voreppe, Le Chevalon",
+                                 "name":  "Le Chevalon",
+                                 "city":  "Voreppe",
+                                 "lat":  45.27817,
+                                 "lon":  5.64804,
+                                 "parentStation":  {
+                                                       "id":  "SE2:CHEV",
+                                                       "code":  "SE2:CHEV",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Le Chevalon",
+                                                       "visible":  false,
+                                                       "lat":  45.2781,
+                                                       "lon":  5.648
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2412",
+                                 "trips":  [
+                                               40669,
+                                               "|",
+                                               44269,
+                                               "|"
+                                           ],
+                                 "stopName":  "Voreppe, Chassolière",
+                                 "name":  "Chassolière",
+                                 "city":  "Voreppe",
+                                 "lat":  45.28067,
+                                 "lon":  5.6466,
+                                 "parentStation":  {
+                                                       "id":  "SE2:CHAS",
+                                                       "code":  "SE2:CHAS",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Chassolière",
+                                                       "visible":  true,
+                                                       "lat":  45.28034,
+                                                       "lon":  5.64669
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2421",
+                                 "trips":  [
+                                               40786,
+                                               "|",
+                                               44386,
+                                               "|"
+                                           ],
+                                 "stopName":  "Voreppe, Volouise",
+                                 "name":  "Volouise",
+                                 "city":  "Voreppe",
+                                 "lat":  45.28652,
+                                 "lon":  5.64316,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VOL",
+                                                       "code":  "SE2:VOL",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Volouise",
+                                                       "visible":  false,
+                                                       "lat":  45.28628,
+                                                       "lon":  5.64319
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9027",
+                                 "trips":  [
+                                               40869,
+                                               "|",
+                                               44469,
+                                               "|"
+                                           ],
+                                 "stopName":  "Voreppe, Avenue du 11 Novembre",
+                                 "name":  "Avenue du 11 Novembre",
+                                 "city":  "Voreppe",
+                                 "lat":  45.28941,
+                                 "lon":  5.6384,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VR11S",
+                                                       "code":  "SE2:VR11S",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Avenue du 11 Novembre",
+                                                       "visible":  true,
+                                                       "lat":  45.28917,
+                                                       "lon":  5.6389
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2423",
+                                 "trips":  [
+                                               40980,
+                                               "|",
+                                               44580,
+                                               "|"
+                                           ],
+                                 "stopName":  "Voreppe, Voreppe Gare",
+                                 "name":  "Voreppe Gare",
+                                 "city":  "Voreppe",
+                                 "lat":  45.29007,
+                                 "lon":  5.63251,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VOREPP",
+                                                       "code":  "SE2:VOREPP",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Voreppe Gare",
+                                                       "visible":  false,
+                                                       "lat":  45.29007,
+                                                       "lon":  5.63251
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9034",
+                                 "trips":  [
+                                               41100,
+                                               "|",
+                                               44700,
+                                               "|"
+                                           ],
+                                 "stopName":  "Voreppe, Voreppe Mairie",
+                                 "name":  "Voreppe Mairie",
+                                 "city":  "Voreppe",
+                                 "lat":  45.29321,
+                                 "lon":  5.63595,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VRMAI",
+                                                       "code":  "SE2:VRMAI",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Voreppe Mairie",
+                                                       "visible":  true,
+                                                       "lat":  45.29311,
+                                                       "lon":  5.63562
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9029",
+                                 "trips":  [
+                                               41176,
+                                               "|",
+                                               44776,
+                                               "|"
+                                           ],
+                                 "stopName":  "Voreppe, Charminelles",
+                                 "name":  "Charminelles",
+                                 "city":  "Voreppe",
+                                 "lat":  45.29537,
+                                 "lon":  5.63795,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VRCHA",
+                                                       "code":  "SE2:VRCHA",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Charminelles",
+                                                       "visible":  true,
+                                                       "lat":  45.29546,
+                                                       "lon":  5.6379
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2420",
+                                 "trips":  [
+                                               41280,
+                                               "|",
+                                               44880,
+                                               "|"
+                                           ],
+                                 "stopName":  "Voreppe, Place Docteur Thévenet",
+                                 "name":  "Place Docteur Thévenet",
+                                 "city":  "Voreppe",
+                                 "lat":  45.29814,
+                                 "lon":  5.63633,
+                                 "parentStation":  {
+                                                       "id":  "SE2:PDT",
+                                                       "code":  "SE2:PDT",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Place Docteur Thévenet",
+                                                       "visible":  false,
+                                                       "lat":  45.29814,
+                                                       "lon":  5.63635
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9042",
+                                 "trips":  [
+                                               41350,
+                                               "|",
+                                               44950,
+                                               "|"
+                                           ],
+                                 "stopName":  "Voreppe, Chapays",
+                                 "name":  "Chapays",
+                                 "city":  "Voreppe",
+                                 "lat":  45.30062,
+                                 "lon":  5.6298,
+                                 "parentStation":  {
+                                                       "id":  "SE2:CHAP",
+                                                       "code":  "SE2:CHAP",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Chapays",
+                                                       "visible":  true,
+                                                       "lat":  45.30087,
+                                                       "lon":  5.62943
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9040",
+                                 "trips":  [
+                                               41596,
+                                               "|",
+                                               45196,
+                                               "|"
+                                           ],
+                                 "stopName":  "La Buisse, Ressourcerie",
+                                 "name":  "Ressourcerie",
+                                 "city":  "La Buisse",
+                                 "lat":  45.31819,
+                                 "lon":  5.622,
+                                 "parentStation":  {
+                                                       "id":  "SE2:BURES",
+                                                       "code":  "SE2:BURES",
+                                                       "city":  "La Buisse",
+                                                       "name":  "Ressourcerie",
+                                                       "visible":  true,
+                                                       "lat":  45.31805,
+                                                       "lon":  5.62196
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9025",
+                                 "trips":  [
+                                               41753,
+                                               "|",
+                                               45353,
+                                               "|"
+                                           ],
+                                 "stopName":  "La Buisse, AFIPH",
+                                 "name":  "AFIPH",
+                                 "city":  "La Buisse",
+                                 "lat":  45.33044,
+                                 "lon":  5.62105,
+                                 "parentStation":  {
+                                                       "id":  "SE2:BUAFI",
+                                                       "code":  "SE2:BUAFI",
+                                                       "city":  "La Buisse",
+                                                       "name":  "AFIPH",
+                                                       "visible":  true,
+                                                       "lat":  45.33047,
+                                                       "lon":  5.621
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9036",
+                                 "trips":  [
+                                               41820,
+                                               "|",
+                                               45420,
+                                               "|"
+                                           ],
+                                 "stopName":  "La Buisse, La Buisse Place",
+                                 "name":  "La Buisse Place",
+                                 "city":  "La Buisse",
+                                 "lat":  45.33554,
+                                 "lon":  5.62098,
+                                 "parentStation":  {
+                                                       "id":  "SE2:BUPLC",
+                                                       "code":  "SE2:BUPLC",
+                                                       "city":  "La Buisse",
+                                                       "name":  "La Buisse Place",
+                                                       "visible":  true,
+                                                       "lat":  45.33531,
+                                                       "lon":  5.62111
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9038",
+                                 "trips":  [
+                                               42118,
+                                               "|",
+                                               45718,
+                                               "|"
+                                           ],
+                                 "stopName":  "Saint-Jean-de-Moirans, Plan Menu RD1075",
+                                 "name":  "Plan Menu RD1075",
+                                 "city":  "Saint-Jean-de-Moirans",
+                                 "lat":  45.34951,
+                                 "lon":  5.59546,
+                                 "parentStation":  {
+                                                       "id":  "SE2:SJPMR",
+                                                       "code":  "SE2:SJPMR",
+                                                       "city":  "Saint-Jean-de-Moirans",
+                                                       "name":  "Plan Menu RD1075",
+                                                       "visible":  true,
+                                                       "lat":  45.34942,
+                                                       "lon":  5.5954
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2380",
+                                 "trips":  [
+                                               42169,
+                                               "|",
+                                               45769,
+                                               "|"
+                                           ],
+                                 "stopName":  "Coublevie, Parking Plan Menu",
+                                 "name":  "Parking Plan Menu",
+                                 "city":  "Coublevie",
+                                 "lat":  45.35341,
+                                 "lon":  5.59772,
+                                 "parentStation":  {
+                                                       "id":  "SE2:PME",
+                                                       "code":  "SE2:PME",
+                                                       "city":  "Coublevie",
+                                                       "name":  "Parking Plan Menu",
+                                                       "visible":  false,
+                                                       "lat":  45.35337,
+                                                       "lon":  5.59762
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9031",
+                                 "trips":  [
+                                               42265,
+                                               "|",
+                                               45865,
+                                               "|"
+                                           ],
+                                 "stopName":  "Voiron, Edgar Kofler",
+                                 "name":  "Edgar Kofler",
+                                 "city":  "Voiron",
+                                 "lat":  45.36049,
+                                 "lon":  5.59976,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VOKOF",
+                                                       "code":  "SE2:VOKOF",
+                                                       "city":  "Voiron",
+                                                       "name":  "Edgar Kofler",
+                                                       "visible":  true,
+                                                       "lat":  45.36026,
+                                                       "lon":  5.59989
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9033",
+                                 "trips":  [
+                                               42360,
+                                               "|",
+                                               45960,
+                                               "|"
+                                           ],
+                                 "stopName":  "Voiron, Voiron Gare Routière Sud",
+                                 "name":  "Voiron Gare Routière Sud",
+                                 "city":  "Voiron",
+                                 "lat":  45.36316,
+                                 "lon":  5.59505,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VOIRON",
+                                                       "code":  "SE2:VOIRON",
+                                                       "city":  "Voiron",
+                                                       "name":  "Voiron Gare Routière Sud",
+                                                       "visible":  true,
+                                                       "lat":  45.36333,
+                                                       "lon":  5.59491
+                                                   }
+                             }
+                         ],
+              "trips":  [
+                            {
+                                "tripId":  "SE2:32383590",
+                                "pickupType":  "0"
+                            },
+                            {
+                                "tripId":  "SE2:32383591",
+                                "pickupType":  "0"
+                            },
+                            {
+                                "tripId":  "SE2:32383592",
+                                "pickupType":  "0"
+                            },
+                            {
+                                "tripId":  "SE2:32383594",
+                                "pickupType":  "0"
+                            }
+                        ],
+              "prevTime":  1788426600000,
+              "nextTime":  1788439440000
+          },
+    "1":  {
+              "arrets":  [
+                             {
+                                 "stopId":  "SE2:4895",
+                                 "trips":  [
+                                               42480,
+                                               "|",
+                                               45660,
+                                               "|"
+                                           ],
+                                 "stopName":  "Grenoble, Gare Routière",
+                                 "name":  "Gare Routière",
+                                 "city":  "Grenoble",
+                                 "lat":  45.19298,
+                                 "lon":  5.7143,
+                                 "parentStation":  {
+                                                       "id":  "SE2:GARO",
+                                                       "code":  "SE2:GARO",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Gare Routière",
+                                                       "visible":  false,
+                                                       "lat":  45.19298,
+                                                       "lon":  5.7143
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9033",
+                                 "trips":  [
+                                               "|",
+                                               41400,
+                                               "|",
+                                               44100
+                                           ],
+                                 "stopName":  "Voiron, Voiron Gare Routière Sud",
+                                 "name":  "Voiron Gare Routière Sud",
+                                 "city":  "Voiron",
+                                 "lat":  45.36316,
+                                 "lon":  5.59505,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VOIRON",
+                                                       "code":  "SE2:VOIRON",
+                                                       "city":  "Voiron",
+                                                       "name":  "Voiron Gare Routière Sud",
+                                                       "visible":  true,
+                                                       "lat":  45.36333,
+                                                       "lon":  5.59491
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9032",
+                                 "trips":  [
+                                               "|",
+                                               41497,
+                                               "|",
+                                               44197
+                                           ],
+                                 "stopName":  "Voiron, Edgar Kofler",
+                                 "name":  "Edgar Kofler",
+                                 "city":  "Voiron",
+                                 "lat":  45.36003,
+                                 "lon":  5.60003,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VOKOF",
+                                                       "code":  "SE2:VOKOF",
+                                                       "city":  "Voiron",
+                                                       "name":  "Edgar Kofler",
+                                                       "visible":  true,
+                                                       "lat":  45.36026,
+                                                       "lon":  5.59989
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2381",
+                                 "trips":  [
+                                               "|",
+                                               41576,
+                                               "|",
+                                               44276
+                                           ],
+                                 "stopName":  "Coublevie, Parking Plan Menu",
+                                 "name":  "Parking Plan Menu",
+                                 "city":  "Coublevie",
+                                 "lat":  45.35336,
+                                 "lon":  5.59753,
+                                 "parentStation":  {
+                                                       "id":  "SE2:PME",
+                                                       "code":  "SE2:PME",
+                                                       "city":  "Coublevie",
+                                                       "name":  "Parking Plan Menu",
+                                                       "visible":  false,
+                                                       "lat":  45.35337,
+                                                       "lon":  5.59762
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9039",
+                                 "trips":  [
+                                               "|",
+                                               41620,
+                                               "|",
+                                               44320
+                                           ],
+                                 "stopName":  "Saint-Jean-de-Moirans, Plan Menu RD1075",
+                                 "name":  "Plan Menu RD1075",
+                                 "city":  "Saint-Jean-de-Moirans",
+                                 "lat":  45.34934,
+                                 "lon":  5.59534,
+                                 "parentStation":  {
+                                                       "id":  "SE2:SJPMR",
+                                                       "code":  "SE2:SJPMR",
+                                                       "city":  "Saint-Jean-de-Moirans",
+                                                       "name":  "Plan Menu RD1075",
+                                                       "visible":  true,
+                                                       "lat":  45.34942,
+                                                       "lon":  5.5954
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9037",
+                                 "trips":  [
+                                               "|",
+                                               41880,
+                                               "|",
+                                               44580
+                                           ],
+                                 "stopName":  "La Buisse, La Buisse Place",
+                                 "name":  "La Buisse Place",
+                                 "city":  "La Buisse",
+                                 "lat":  45.33508,
+                                 "lon":  5.62125,
+                                 "parentStation":  {
+                                                       "id":  "SE2:BUPLC",
+                                                       "code":  "SE2:BUPLC",
+                                                       "city":  "La Buisse",
+                                                       "name":  "La Buisse Place",
+                                                       "visible":  true,
+                                                       "lat":  45.33531,
+                                                       "lon":  5.62111
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9026",
+                                 "trips":  [
+                                               "|",
+                                               41945,
+                                               "|",
+                                               44645
+                                           ],
+                                 "stopName":  "La Buisse, AFIPH",
+                                 "name":  "AFIPH",
+                                 "city":  "La Buisse",
+                                 "lat":  45.3305,
+                                 "lon":  5.62095,
+                                 "parentStation":  {
+                                                       "id":  "SE2:BUAFI",
+                                                       "code":  "SE2:BUAFI",
+                                                       "city":  "La Buisse",
+                                                       "name":  "AFIPH",
+                                                       "visible":  true,
+                                                       "lat":  45.33047,
+                                                       "lon":  5.621
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9041",
+                                 "trips":  [
+                                               "|",
+                                               42123,
+                                               "|",
+                                               44823
+                                           ],
+                                 "stopName":  "La Buisse, Ressourcerie",
+                                 "name":  "Ressourcerie",
+                                 "city":  "La Buisse",
+                                 "lat":  45.31791,
+                                 "lon":  5.62193,
+                                 "parentStation":  {
+                                                       "id":  "SE2:BURES",
+                                                       "code":  "SE2:BURES",
+                                                       "city":  "La Buisse",
+                                                       "name":  "Ressourcerie",
+                                                       "visible":  true,
+                                                       "lat":  45.31805,
+                                                       "lon":  5.62196
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9043",
+                                 "trips":  [
+                                               "|",
+                                               42385,
+                                               "|",
+                                               45085
+                                           ],
+                                 "stopName":  "Voreppe, Chapays",
+                                 "name":  "Chapays",
+                                 "city":  "Voreppe",
+                                 "lat":  45.30114,
+                                 "lon":  5.62905,
+                                 "parentStation":  {
+                                                       "id":  "SE2:CHAP",
+                                                       "code":  "SE2:CHAP",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Chapays",
+                                                       "visible":  true,
+                                                       "lat":  45.30087,
+                                                       "lon":  5.62943
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2420",
+                                 "trips":  [
+                                               "|",
+                                               42480,
+                                               "|",
+                                               45180
+                                           ],
+                                 "stopName":  "Voreppe, Place Docteur Thévenet",
+                                 "name":  "Place Docteur Thévenet",
+                                 "city":  "Voreppe",
+                                 "lat":  45.29814,
+                                 "lon":  5.63633,
+                                 "parentStation":  {
+                                                       "id":  "SE2:PDT",
+                                                       "code":  "SE2:PDT",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Place Docteur Thévenet",
+                                                       "visible":  false,
+                                                       "lat":  45.29814,
+                                                       "lon":  5.63635
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9030",
+                                 "trips":  [
+                                               "|",
+                                               42566,
+                                               "|",
+                                               45266
+                                           ],
+                                 "stopName":  "Voreppe, Charminelles",
+                                 "name":  "Charminelles",
+                                 "city":  "Voreppe",
+                                 "lat":  45.29555,
+                                 "lon":  5.63785,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VRCHA",
+                                                       "code":  "SE2:VRCHA",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Charminelles",
+                                                       "visible":  true,
+                                                       "lat":  45.29546,
+                                                       "lon":  5.6379
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9035",
+                                 "trips":  [
+                                               "|",
+                                               42674,
+                                               "|",
+                                               45374
+                                           ],
+                                 "stopName":  "Voreppe, Voreppe Mairie",
+                                 "name":  "Voreppe Mairie",
+                                 "city":  "Voreppe",
+                                 "lat":  45.293,
+                                 "lon":  5.63529,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VRMAI",
+                                                       "code":  "SE2:VRMAI",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Voreppe Mairie",
+                                                       "visible":  true,
+                                                       "lat":  45.29311,
+                                                       "lon":  5.63562
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2423",
+                                 "trips":  [
+                                               "|",
+                                               42780,
+                                               "|",
+                                               45480
+                                           ],
+                                 "stopName":  "Voreppe, Voreppe Gare",
+                                 "name":  "Voreppe Gare",
+                                 "city":  "Voreppe",
+                                 "lat":  45.29007,
+                                 "lon":  5.63251,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VOREPP",
+                                                       "code":  "SE2:VOREPP",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Voreppe Gare",
+                                                       "visible":  false,
+                                                       "lat":  45.29007,
+                                                       "lon":  5.63251
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:9028",
+                                 "trips":  [
+                                               "|",
+                                               42899,
+                                               "|",
+                                               45599
+                                           ],
+                                 "stopName":  "Voreppe, Avenue du 11 Novembre",
+                                 "name":  "Avenue du 11 Novembre",
+                                 "city":  "Voreppe",
+                                 "lat":  45.28894,
+                                 "lon":  5.6394,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VR11S",
+                                                       "code":  "SE2:VR11S",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Avenue du 11 Novembre",
+                                                       "visible":  true,
+                                                       "lat":  45.28917,
+                                                       "lon":  5.6389
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2422",
+                                 "trips":  [
+                                               "|",
+                                               42976,
+                                               "|",
+                                               45676
+                                           ],
+                                 "stopName":  "Voreppe, Volouise",
+                                 "name":  "Volouise",
+                                 "city":  "Voreppe",
+                                 "lat":  45.286,
+                                 "lon":  5.64324,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VOL",
+                                                       "code":  "SE2:VOL",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Volouise",
+                                                       "visible":  false,
+                                                       "lat":  45.28628,
+                                                       "lon":  5.64319
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2413",
+                                 "trips":  [
+                                               "|",
+                                               43099,
+                                               "|",
+                                               45799
+                                           ],
+                                 "stopName":  "Voreppe, Chassolière",
+                                 "name":  "Chassolière",
+                                 "city":  "Voreppe",
+                                 "lat":  45.28001,
+                                 "lon":  5.64678,
+                                 "parentStation":  {
+                                                       "id":  "SE2:CHAS",
+                                                       "code":  "SE2:CHAS",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Chassolière",
+                                                       "visible":  true,
+                                                       "lat":  45.28034,
+                                                       "lon":  5.64669
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2417",
+                                 "trips":  [
+                                               "|",
+                                               43140,
+                                               "|",
+                                               45840
+                                           ],
+                                 "stopName":  "Voreppe, Le Chevalon",
+                                 "name":  "Le Chevalon",
+                                 "city":  "Voreppe",
+                                 "lat":  45.27803,
+                                 "lon":  5.64796,
+                                 "parentStation":  {
+                                                       "id":  "SE2:CHEV",
+                                                       "code":  "SE2:CHEV",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Le Chevalon",
+                                                       "visible":  false,
+                                                       "lat":  45.2781,
+                                                       "lon":  5.648
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2411",
+                                 "trips":  [
+                                               "|",
+                                               43197,
+                                               "|",
+                                               45897
+                                           ],
+                                 "stopName":  "Voreppe, Café adrait",
+                                 "name":  "Café adrait",
+                                 "city":  "Voreppe",
+                                 "lat":  45.27356,
+                                 "lon":  5.65056,
+                                 "parentStation":  {
+                                                       "id":  "SE2:CAA",
+                                                       "code":  "SE2:CAA",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Café adrait",
+                                                       "visible":  false,
+                                                       "lat":  45.27377,
+                                                       "lon":  5.65055
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2409",
+                                 "trips":  [
+                                               "|",
+                                               43269,
+                                               "|",
+                                               45969
+                                           ],
+                                 "stopName":  "Voreppe, Bascule",
+                                 "name":  "Bascule",
+                                 "city":  "Voreppe",
+                                 "lat":  45.26795,
+                                 "lon":  5.65378,
+                                 "parentStation":  {
+                                                       "id":  "SE2:BASC",
+                                                       "code":  "SE2:BASC",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Bascule",
+                                                       "visible":  true,
+                                                       "lat":  45.2681,
+                                                       "lon":  5.6538
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2419",
+                                 "trips":  [
+                                               "|",
+                                               43324,
+                                               "|",
+                                               46024
+                                           ],
+                                 "stopName":  "Voreppe, Logis Neuf",
+                                 "name":  "Logis Neuf",
+                                 "city":  "Voreppe",
+                                 "lat":  45.26367,
+                                 "lon":  5.65624,
+                                 "parentStation":  {
+                                                       "id":  "SE2:LN",
+                                                       "code":  "SE2:LN",
+                                                       "city":  "Voreppe",
+                                                       "name":  "Logis Neuf",
+                                                       "visible":  true,
+                                                       "lat":  45.26347,
+                                                       "lon":  5.65645
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2383",
+                                 "trips":  [
+                                               "|",
+                                               43395,
+                                               "|",
+                                               46095
+                                           ],
+                                 "stopName":  "Fontanil-Cornillon, Croix de la Rochette",
+                                 "name":  "Croix de la Rochette",
+                                 "city":  "Fontanil-Cornillon",
+                                 "lat":  45.25816,
+                                 "lon":  5.65947,
+                                 "parentStation":  {
+                                                       "id":  "SE2:FOT",
+                                                       "code":  "SE2:FOT",
+                                                       "city":  "Fontanil-Cornillon",
+                                                       "name":  "Croix de la Rochette",
+                                                       "visible":  true,
+                                                       "lat":  45.25845,
+                                                       "lon":  5.65938
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2387",
+                                 "trips":  [
+                                               "|",
+                                               43440,
+                                               "|",
+                                               46140
+                                           ],
+                                 "stopName":  "Fontanil-Cornillon, Palluel",
+                                 "name":  "Palluel",
+                                 "city":  "Fontanil-Cornillon",
+                                 "lat":  45.25472,
+                                 "lon":  5.6616,
+                                 "parentStation":  {
+                                                       "id":  "SE2:FTL",
+                                                       "code":  "SE2:FTL",
+                                                       "city":  "Fontanil-Cornillon",
+                                                       "name":  "Palluel",
+                                                       "visible":  false,
+                                                       "lat":  45.25492,
+                                                       "lon":  5.66164
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2385",
+                                 "trips":  [
+                                               "|",
+                                               43530,
+                                               "|",
+                                               46230
+                                           ],
+                                 "stopName":  "Fontanil-Cornillon, LEP Françoise Dolto",
+                                 "name":  "LEP Françoise Dolto",
+                                 "city":  "Fontanil-Cornillon",
+                                 "lat":  45.24944,
+                                 "lon":  5.66559,
+                                 "parentStation":  {
+                                                       "id":  "SE2:DOLTO",
+                                                       "code":  "SE2:DOLTO",
+                                                       "city":  "Fontanil-Cornillon",
+                                                       "name":  "LEP Françoise Dolto",
+                                                       "visible":  false,
+                                                       "lat":  45.25002,
+                                                       "lon":  5.66526
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:0304",
+                                 "trips":  [
+                                               "|",
+                                               43700,
+                                               "|",
+                                               46400
+                                           ],
+                                 "stopName":  "Saint-Égrève, Cap 38",
+                                 "name":  "Cap 38",
+                                 "city":  "Saint-Égrève",
+                                 "lat":  45.24041,
+                                 "lon":  5.6666,
+                                 "parentStation":  {
+                                                       "id":  "SE2:ZI",
+                                                       "code":  "SE2:ZI",
+                                                       "city":  "Saint-Égrève",
+                                                       "name":  "Cap 38",
+                                                       "visible":  false,
+                                                       "lat":  45.24024,
+                                                       "lon":  5.66672
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2401",
+                                 "trips":  [
+                                               "|",
+                                               43800,
+                                               "|",
+                                               46500
+                                           ],
+                                 "stopName":  "Saint-Égrève, San Marino – Barrage",
+                                 "name":  "San Marino – Barrage",
+                                 "city":  "Saint-Égrève",
+                                 "lat":  45.23618,
+                                 "lon":  5.66094,
+                                 "parentStation":  {
+                                                       "id":  "SE2:SMA",
+                                                       "code":  "SE2:SMA",
+                                                       "city":  "Saint-Égrève",
+                                                       "name":  "San Marino – Barrage",
+                                                       "visible":  true,
+                                                       "lat":  45.23646,
+                                                       "lon":  5.66203
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2390",
+                                 "trips":  [
+                                               "|",
+                                               44100,
+                                               "|",
+                                               46800
+                                           ],
+                                 "stopName":  "Grenoble, Oxford",
+                                 "name":  "Oxford",
+                                 "city":  "Grenoble",
+                                 "lat":  45.20462,
+                                 "lon":  5.70101,
+                                 "parentStation":  {
+                                                       "id":  "SE2:OXF",
+                                                       "code":  "SE2:OXF",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Oxford",
+                                                       "visible":  false,
+                                                       "lat":  45.20585,
+                                                       "lon":  5.6997
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:5058",
+                                 "trips":  [
+                                               "|",
+                                               44159,
+                                               "|",
+                                               46859
+                                           ],
+                                 "stopName":  "Grenoble, Marie-Louise Paris – CEA",
+                                 "name":  "Marie-Louise Paris – CEA",
+                                 "city":  "Grenoble",
+                                 "lat":  45.20207,
+                                 "lon":  5.70436,
+                                 "parentStation":  {
+                                                       "id":  "SE2:CEA",
+                                                       "code":  "SE2:CEA",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Marie-Louise Paris – CEA",
+                                                       "visible":  false,
+                                                       "lat":  45.20248,
+                                                       "lon":  5.70411
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:4384",
+                                 "trips":  [
+                                               "|",
+                                               44275,
+                                               "|",
+                                               46975
+                                           ],
+                                 "stopName":  "Grenoble, Durand-Savoyat",
+                                 "name":  "Durand-Savoyat",
+                                 "city":  "Grenoble",
+                                 "lat":  45.19905,
+                                 "lon":  5.71178,
+                                 "parentStation":  {
+                                                       "id":  "SE2:DS",
+                                                       "code":  "SE2:DS",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Durand-Savoyat",
+                                                       "visible":  false,
+                                                       "lat":  45.19895,
+                                                       "lon":  5.71046
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2354",
+                                 "trips":  [
+                                               42600,
+                                               44460,
+                                               45780,
+                                               47160
+                                           ],
+                                 "stopName":  "Grenoble, Gares",
+                                 "name":  "Gares",
+                                 "city":  "Grenoble",
+                                 "lat":  45.19177,
+                                 "lon":  5.71499,
+                                 "parentStation":  {
+                                                       "id":  "SE2:GAR",
+                                                       "code":  "SE2:GAR",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Gares",
+                                                       "visible":  false,
+                                                       "lat":  45.19121,
+                                                       "lon":  5.71509
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:0945",
+                                 "trips":  [
+                                               42803,
+                                               44663,
+                                               45983,
+                                               47363
+                                           ],
+                                 "stopName":  "Grenoble, Alsace-Lorraine",
+                                 "name":  "Alsace-Lorraine",
+                                 "city":  "Grenoble",
+                                 "lat":  45.18826,
+                                 "lon":  5.71895,
+                                 "parentStation":  {
+                                                       "id":  "SE2:AL",
+                                                       "code":  "SE2:AL",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Alsace-Lorraine",
+                                                       "visible":  false,
+                                                       "lat":  45.18888,
+                                                       "lon":  5.71961
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:4308",
+                                 "trips":  [
+                                               43082,
+                                               44942,
+                                               46262,
+                                               47642
+                                           ],
+                                 "stopName":  "Grenoble, Vallier – Libération",
+                                 "name":  "Vallier – Libération",
+                                 "city":  "Grenoble",
+                                 "lat":  45.17854,
+                                 "lon":  5.7157,
+                                 "parentStation":  {
+                                                       "id":  "SE2:VLI",
+                                                       "code":  "SE2:VLI",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Vallier – Libération",
+                                                       "visible":  false,
+                                                       "lat":  45.17979,
+                                                       "lon":  5.7157
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:4306",
+                                 "trips":  [
+                                               43232,
+                                               45092,
+                                               46412,
+                                               47792
+                                           ],
+                                 "stopName":  "Grenoble, Alliés",
+                                 "name":  "Alliés",
+                                 "city":  "Grenoble",
+                                 "lat":  45.1733,
+                                 "lon":  5.71396,
+                                 "parentStation":  {
+                                                       "id":  "SE2:AAF",
+                                                       "code":  "SE2:AAF",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Alliés",
+                                                       "visible":  false,
+                                                       "lat":  45.17404,
+                                                       "lon":  5.71422
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:4304",
+                                 "trips":  [
+                                               43320,
+                                               45180,
+                                               46500,
+                                               47880
+                                           ],
+                                 "stopName":  "Grenoble, Louise Michel",
+                                 "name":  "Louise Michel",
+                                 "city":  "Grenoble",
+                                 "lat":  45.17026,
+                                 "lon":  5.7129,
+                                 "parentStation":  {
+                                                       "id":  "SE2:LMG",
+                                                       "code":  "SE2:LMG",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Louise Michel",
+                                                       "visible":  false,
+                                                       "lat":  45.1696,
+                                                       "lon":  5.71281
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:4679",
+                                 "trips":  [
+                                               43438,
+                                               45298,
+                                               46618,
+                                               47998
+                                           ],
+                                 "stopName":  "Grenoble, Stade Lesdiguières",
+                                 "name":  "Stade Lesdiguières",
+                                 "city":  "Grenoble",
+                                 "lat":  45.16385,
+                                 "lon":  5.7108,
+                                 "parentStation":  {
+                                                       "id":  "SE2:LESD",
+                                                       "code":  "SE2:LESD",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Stade Lesdiguières",
+                                                       "visible":  false,
+                                                       "lat":  45.1642,
+                                                       "lon":  5.71078
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:0722",
+                                 "trips":  [
+                                               43505,
+                                               45365,
+                                               46685,
+                                               48065
+                                           ],
+                                 "stopName":  "Grenoble, Marielle Franco – Technisud",
+                                 "name":  "Marielle Franco – Technisud",
+                                 "city":  "Grenoble",
+                                 "lat":  45.16024,
+                                 "lon":  5.70957,
+                                 "parentStation":  {
+                                                       "id":  "SE2:RON",
+                                                       "code":  "SE2:RON",
+                                                       "city":  "Grenoble",
+                                                       "name":  "Marielle Franco – Technisud",
+                                                       "visible":  false,
+                                                       "lat":  45.16071,
+                                                       "lon":  5.70985
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:1224",
+                                 "trips":  [
+                                               43667,
+                                               45527,
+                                               46847,
+                                               48227
+                                           ],
+                                 "stopName":  "Échirolles, Quinzaine",
+                                 "name":  "Quinzaine",
+                                 "city":  "Échirolles",
+                                 "lat":  45.15149,
+                                 "lon":  5.7066,
+                                 "parentStation":  {
+                                                       "id":  "SE2:QUIN",
+                                                       "code":  "SE2:QUIN",
+                                                       "city":  "Échirolles",
+                                                       "name":  "Quinzaine",
+                                                       "visible":  false,
+                                                       "lat":  45.15157,
+                                                       "lon":  5.70676
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:1215",
+                                 "trips":  [
+                                               43776,
+                                               45636,
+                                               46956,
+                                               48336
+                                           ],
+                                 "stopName":  "Échirolles, Bayard",
+                                 "name":  "Bayard",
+                                 "city":  "Échirolles",
+                                 "lat":  45.14563,
+                                 "lon":  5.70464,
+                                 "parentStation":  {
+                                                       "id":  "SE2:BAY",
+                                                       "code":  "SE2:BAY",
+                                                       "city":  "Échirolles",
+                                                       "name":  "Bayard",
+                                                       "visible":  false,
+                                                       "lat":  45.14606,
+                                                       "lon":  5.70464
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:1210",
+                                 "trips":  [
+                                               43920,
+                                               45780,
+                                               47100,
+                                               48480
+                                           ],
+                                 "stopName":  "Le Pont-de-Claix, L\u0027Étoile",
+                                 "name":  "L\u0027Étoile",
+                                 "city":  "Le Pont-de-Claix",
+                                 "lat":  45.13787,
+                                 "lon":  5.70204,
+                                 "parentStation":  {
+                                                       "id":  "SE2:ETOILE",
+                                                       "code":  "SE2:ETOILE",
+                                                       "city":  "Le Pont-de-Claix",
+                                                       "name":  "L\u0027Étoile",
+                                                       "visible":  false,
+                                                       "lat":  45.13785,
+                                                       "lon":  5.70362
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:4936",
+                                 "trips":  [
+                                               44014,
+                                               45874,
+                                               47194,
+                                               48574
+                                           ],
+                                 "stopName":  "Le Pont-de-Claix, Iles de Mars",
+                                 "name":  "Iles de Mars",
+                                 "city":  "Le Pont-de-Claix",
+                                 "lat":  45.1317,
+                                 "lon":  5.69995,
+                                 "parentStation":  {
+                                                       "id":  "SE2:ILE",
+                                                       "code":  "SE2:ILE",
+                                                       "city":  "Le Pont-de-Claix",
+                                                       "name":  "Iles de Mars",
+                                                       "visible":  false,
+                                                       "lat":  45.13183,
+                                                       "lon":  5.7001
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2395",
+                                 "trips":  [
+                                               44160,
+                                               46020,
+                                               47340,
+                                               48720
+                                           ],
+                                 "stopName":  "Le Pont-de-Claix, Le Pont-de-Claix Mairie",
+                                 "name":  "Le Pont-de-Claix Mairie",
+                                 "city":  "Le Pont-de-Claix",
+                                 "lat":  45.12269,
+                                 "lon":  5.69862,
+                                 "parentStation":  {
+                                                       "id":  "SE2:PCM",
+                                                       "code":  "SE2:PCM",
+                                                       "city":  "Le Pont-de-Claix",
+                                                       "name":  "Le Pont-de-Claix Mairie",
+                                                       "visible":  false,
+                                                       "lat":  45.12309,
+                                                       "lon":  5.69799
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:1411",
+                                 "trips":  [
+                                               44211,
+                                               46071,
+                                               47391,
+                                               48771
+                                           ],
+                                 "stopName":  "Le Pont-de-Claix, Les Deux Ponts",
+                                 "name":  "Les Deux Ponts",
+                                 "city":  "Le Pont-de-Claix",
+                                 "lat":  45.11783,
+                                 "lon":  5.7026,
+                                 "parentStation":  {
+                                                       "id":  "SE2:LDP",
+                                                       "code":  "SE2:LDP",
+                                                       "city":  "Le Pont-de-Claix",
+                                                       "name":  "Les Deux Ponts",
+                                                       "visible":  false,
+                                                       "lat":  45.11798,
+                                                       "lon":  5.70249
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:1410",
+                                 "trips":  [
+                                               44253,
+                                               46113,
+                                               47433,
+                                               48813
+                                           ],
+                                 "stopName":  "Le Pont-de-Claix, Beau Site",
+                                 "name":  "Beau Site",
+                                 "city":  "Le Pont-de-Claix",
+                                 "lat":  45.11388,
+                                 "lon":  5.70566,
+                                 "parentStation":  {
+                                                       "id":  "SE2:PDCBSI",
+                                                       "code":  "SE2:PDCBSI",
+                                                       "city":  "Le Pont-de-Claix",
+                                                       "name":  "Beau Site",
+                                                       "visible":  false,
+                                                       "lat":  45.11395,
+                                                       "lon":  5.70576
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2379",
+                                 "trips":  [
+                                               44465,
+                                               46325,
+                                               47645,
+                                               49025
+                                           ],
+                                 "stopName":  "Champagnier, Saut du Moine",
+                                 "name":  "Saut du Moine",
+                                 "city":  "Champagnier",
+                                 "lat":  45.09466,
+                                 "lon":  5.72113,
+                                 "parentStation":  {
+                                                       "id":  "SE2:SDM",
+                                                       "code":  "SE2:SDM",
+                                                       "city":  "Champagnier",
+                                                       "name":  "Saut du Moine",
+                                                       "visible":  false,
+                                                       "lat":  45.09518,
+                                                       "lon":  5.72088
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2392",
+                                 "trips":  [
+                                               44552,
+                                               46412,
+                                               47732,
+                                               49112
+                                           ],
+                                 "stopName":  "Champ-sur-Drac, Pont de Champ",
+                                 "name":  "Pont de Champ",
+                                 "city":  "Champ-sur-Drac",
+                                 "lat":  45.08849,
+                                 "lon":  5.73072,
+                                 "parentStation":  {
+                                                       "id":  "SE2:PONC",
+                                                       "code":  "SE2:PONC",
+                                                       "city":  "Champ-sur-Drac",
+                                                       "name":  "Pont de Champ",
+                                                       "visible":  false,
+                                                       "lat":  45.08815,
+                                                       "lon":  5.73062
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2391",
+                                 "trips":  [
+                                               44640,
+                                               46500,
+                                               47820,
+                                               49200
+                                           ],
+                                 "stopName":  "Champ-sur-Drac, Jarrie Gare",
+                                 "name":  "Jarrie Gare",
+                                 "city":  "Champ-sur-Drac",
+                                 "lat":  45.08385,
+                                 "lon":  5.74239,
+                                 "parentStation":  {
+                                                       "id":  "SE2:GARJA",
+                                                       "code":  "SE2:GARJA",
+                                                       "city":  "Jarrie",
+                                                       "name":  "Jarrie Gare",
+                                                       "visible":  true,
+                                                       "lat":  45.08482,
+                                                       "lon":  5.74234
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2405",
+                                 "trips":  [
+                                               44884,
+                                               46744,
+                                               48064,
+                                               49444
+                                           ],
+                                 "stopName":  "Vizille, L\u0027Alliance",
+                                 "name":  "L\u0027Alliance",
+                                 "city":  "Vizille",
+                                 "lat":  45.08175,
+                                 "lon":  5.76905,
+                                 "parentStation":  {
+                                                       "id":  "SE2:ALI",
+                                                       "code":  "SE2:ALI",
+                                                       "city":  "Vizille",
+                                                       "name":  "L\u0027Alliance",
+                                                       "visible":  false,
+                                                       "lat":  45.08159,
+                                                       "lon":  5.76886
+                                                   }
+                             },
+                             {
+                                 "stopId":  "SE2:2403",
+                                 "trips":  [
+                                               44940,
+                                               46800,
+                                               48120,
+                                               49500
+                                           ],
+                                 "stopName":  "Vizille, Chantefeuille",
+                                 "name":  "Chantefeuille",
+                                 "city":  "Vizille",
+                                 "lat":  45.08039,
+                                 "lon":  5.77513,
+                                 "parentStation":  {
+                                                       "id":  "SE2:CHANT",
+                                                       "code":  "SE2:CHANT",
+                                                       "city":  "Vizille",
+                                                       "name":  "Chantefeuille",
+                                                       "visible":  false,
+                                                       "lat":  45.08052,
+                                                       "lon":  5.77493
+                                                   }
+                             }
+                         ],
+              "trips":  [
+                            {
+                                "tripId":  "SE2:32383948",
+                                "pickupType":  "0"
+                            },
+                            {
+                                "tripId":  "SE2:32383938",
+                                "pickupType":  "0"
+                            },
+                            {
+                                "tripId":  "SE2:32383949",
+                                "pickupType":  "0"
+                            },
+                            {
+                                "tripId":  "SE2:32383939",
+                                "pickupType":  "0"
+                            }
+                        ],
+              "prevTime":  1788425400000,
+              "nextTime":  1788438060000
+          }
+}

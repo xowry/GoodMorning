@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Dashboard - Bus C13 & Lycée</title>
+  <meta name="description" content="Dashboard épuré du matin : Bus C13 Voreppe -> Voiron Edgar Kofler, météo matin/après-midi et emploi du temps lycée.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-background">
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+  </div>
+
+  <div class="container">
+    <!-- HEADER ÉPURÉ -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <div class="greeting-row">
+          <span class="greeting-dot"></span>
+          <span id="greetingText">Bonjour !</span>
+        </div>
+        <h1 class="main-title">Bus C13 <span class="highlight">Voreppe ⇄ Voiron</span></h1>
+        <p class="subtitle" id="routeSubTitle">11 Novembre ➔ Edgar Kofler</p>
+      </div>
+
+      <div class="header-center">
+        <!-- Live Clock -->
+        <div class="clock-card">
+          <div class="clock-time">
+            <span id="clockHours">--</span>:<span id="clockMinutes">--</span><span class="clock-seconds" id="clockSeconds">--</span>
+          </div>
+          <div class="clock-date" id="clockDate">Chargement...</div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- Direction Switcher -->
+        <div class="direction-switch">
+          <button id="dirGoBtn" class="dir-btn active" title="Voreppe vers Voiron (Lycée)">
+            🏫 Aller Lycée
+          </button>
+          <button id="dirReturnBtn" class="dir-btn" title="Voiron vers Voreppe (Maison)">
+            🏠 Retour
+          </button>
+        </div>
+
+        <div class="header-actions">
+          <button id="openConfigBtn" class="icon-btn" title="Modifier les horaires de cours">
+            ⚙️ Horaires
+          </button>
+          <button id="refreshBtn" class="icon-btn icon-only" title="Actualiser">
+            <span class="refresh-spinner" id="refreshIcon">🔄</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- REFRESH PROGRESS BAR -->
+    <div class="refresh-bar-container">
+      <div class="refresh-bar" id="refreshProgressBar"></div>
+    </div>
+
+    <!-- MAIN TWO-COLUMN GRID -->
+    <main class="dashboard-grid">
+      
+      <!-- COLONNE GAUCHE : TRANSPORT BUS C13 -->
+      <section class="grid-col col-bus">
+        
+        <!-- PROCHAIN BUS C13 (HERO) -->
+        <div class="card card-hero-bus" id="heroBusCard">
+          <div class="card-header-flex">
+            <div class="line-badge-group">
+              <span class="line-badge c13-badge">C13</span>
+              <div class="route-info">
+                <span class="route-direction-label" id="routeDirectionLabel">Direction Voiron</span>
+                <span class="route-stops-summary" id="routeStopsSummary">Arrêt Avenue du 11 Novembre</span>
+              </div>
+            </div>
+            <div class="live-status-pill" id="liveStatusPill">
+              <span class="live-dot"></span>
+              <span id="liveStatusText">Temps réel</span>
+            </div>
+          </div>
+
+          <!-- DÉPART & ARRIVÉE -->
+          <div class="hero-bus-body">
+            <!-- DÉPART -->
+            <div class="departure-main">
+              <span class="departure-label">Départ 11 Novembre</span>
+              <div class="countdown-display" id="heroCountdown">-- min</div>
+              <div class="departure-time-row">
+                <span class="time-main" id="heroDepTime">--:--</span>
+                <span class="delay-badge" id="heroDelayBadge">À l'heure</span>
+              </div>
+            </div>
+
+            <!-- ARRIVÉE EDGAR KOFLER -->
+            <div class="arrival-target-box">
+              <span class="target-badge">Arrivée Edgar Kofler</span>
+              <div class="target-arrival-time" id="heroArrTime">--:--</div>
+              <div class="target-duration" id="heroDuration">~23 min de trajet</div>
+            </div>
+          </div>
+
+          <!-- CONSEIL DE DÉPART DISCRET -->
+          <div class="departure-advice-card" id="departureAdviceCard">
+            <span class="advice-icon" id="adviceIcon">☕</span>
+            <div class="advice-content">
+              <div class="advice-text" id="adviceText">Calcul du temps restant...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DÉPARTS SUIVANTS -->
+        <div class="card card-timetable">
+          <div class="card-title-row">
+            <h2 class="card-title">
+              <span class="title-icon">🕒</span> Départs suivants
+            </h2>
+            <span class="badge-count" id="timetableCount">-- bus</span>
+          </div>
+
+          <div class="timetable-list" id="timetableList">
+            <div class="loading-state">
+              <div class="spinner"></div>
+              <p>Chargement des horaires...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLONNE DROITE : MÉTÉO (JUSTE AU-DESSUS) PUIS EMPLOI DU TEMPS -->
+      <section class="grid-col col-school">
+        
+        <!-- 1. MÉTÉO MATIN & APRÈS-MIDI (COMPACTE) -->
+        <div class="card card-weather-simple" id="weatherCard">
+          <div class="card-title-row">
+            <h2 class="card-title">
+              <span class="title-icon">🌤️</span> Météo du Jour • Voreppe & Voiron
+            </h2>
+            <span class="weather-temp-now" id="weatherCurrentSummary">--°C</span>
+          </div>
+
+          <div class="weather-periods-grid">
+            <!-- MATIN -->
+            <div class="weather-period-card morning-card">
+              <div class="period-header">
+                <span class="period-name">🌅 Matin (Trajet & Cours)</span>
+                <span class="period-icon" id="morningIcon">☀️</span>
+              </div>
+              <div class="period-body">
+                <div class="period-temp" id="morningTemp">--°C</div>
+                <div class="period-desc" id="morningDesc">Chargement...</div>
+              </div>
+              <div class="period-footer">
+                <span class="period-metric" id="morningRain">💧 Pluie : 0%</span>
+                <span class="period-tip" id="morningTip">🧥 Veste légère</span>
+              </div>
+            </div>
+
+            <!-- APRÈS-MIDI -->
+            <div class="weather-period-card afternoon-card">
+              <div class="period-header">
+                <span class="period-name">🌇 Après-midi (Sortie)</span>
+                <span class="period-icon" id="afternoonIcon">🌤️</span>
+              </div>
+              <div class="period-body">
+                <div class="period-temp" id="afternoonTemp">--°C</div>
+                <div class="period-desc" id="afternoonDesc">Chargement...</div>
+              </div>
+              <div class="period-footer">
+                <span class="period-metric" id="afternoonRain">💧 Pluie : 0%</span>
+                <span class="period-tip" id="afternoonTip">💧 Gourde d'eau</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. EMPLOI DU TEMPS DU LYCÉE (JUSTE EN DESSOUS DE LA MÉTÉO) -->
+        <div class="card card-school-schedule" id="scheduleCard">
+          <div class="card-title-row">
+            <h2 class="card-title">
+              <span class="title-icon">📚</span> Emploi du Temps Lycée
+            </h2>
+            <div class="day-tabs">
+              <button class="tab-btn active" id="tabTodayBtn">Aujourd'hui</button>
+              <button class="tab-btn" id="tabTomorrowBtn">Demain</button>
+            </div>
+          </div>
+
+          <!-- Résumé 1er cours & Bus Conseillé -->
+          <div class="schedule-summary-bar" id="scheduleSummaryBar">
+            <div class="summary-class-info">
+              <span class="summary-day" id="summaryDayName">Jeudi 3 septembre</span>
+              <span class="summary-start">Début des cours : <strong id="summaryStartTime">08h30</strong></span>
+            </div>
+            <div class="summary-bus-pill" id="summaryBusPill">
+              🚌 Bus conseillé : <strong id="summaryBusTime">07h51</strong> <span id="summaryBusMargin">(16 min d'avance)</span>
+            </div>
+          </div>
+
+          <!-- Liste des Cours -->
+          <div class="courses-list" id="coursesList">
+            <!-- Injecté par app.js -->
+          </div>
+        </div>
+
+        <!-- 3. CHECKLIST SAC (RAPIDE & DISCRÈTE) -->
+        <div class="card card-checklist-compact">
+          <div class="card-title-row">
+            <h2 class="card-title">
+              <span class="title-icon">🎒</span> Checklist Sac
+            </h2>
+            <button id="resetChecklistBtn" class="small-btn text-btn">Réinitialiser</button>
+          </div>
+
+          <div class="checklist-grid" id="checklistItems">
+            <label class="check-item">
+              <input type="checkbox" data-id="pass" class="check-input">
+              <span class="custom-checkbox"></span>
+              <span class="check-text">Pass OùRA / Transport</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-id="carnet" class="check-input">
+              <span class="custom-checkbox"></span>
+              <span class="check-text">Carnet / Badge</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-id="trousse" class="check-input">
+              <span class="custom-checkbox"></span>
+              <span class="check-text">Trousse & Cahiers</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-id="gourde" class="check-input">
+              <span class="custom-checkbox"></span>
+              <span class="check-text">Gourde d'eau</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-id="cles" class="check-input">
+              <span class="custom-checkbox"></span>
+              <span class="check-text">Clés de maison</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-id="audio" class="check-input">
+              <span class="custom-checkbox"></span>
+              <span class="check-text">Téléphone & Écouteurs</span>
+            </label>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- CONFIGURATION DES HORAIRES MODAL -->
+    <div class="modal-backdrop" id="configModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>⚙️ Horaires de Début des Cours</h3>
+          <button class="modal-close-btn" id="closeModalBtn">✕</button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-desc">
+            Modifiez l'heure du 1er cours pour chaque jour. Le bus C13 à prendre sera automatiquement recalculé pour arriver 10 à 15 minutes avant.
+          </p>
+
+          <div class="weekly-schedule-grid">
+            <div class="schedule-row">
+              <span class="day-name">Lundi</span>
+              <input type="time" id="timeLundi" value="08:30" class="time-input">
+            </div>
+            <div class="schedule-row">
+              <span class="day-name">Mardi</span>
+              <input type="time" id="timeMardi" value="08:55" class="time-input">
+            </div>
+            <div class="schedule-row">
+              <span class="day-name">Mercredi</span>
+              <input type="time" id="timeMercredi" value="08:00" class="time-input">
+            </div>
+            <div class="schedule-row">
+              <span class="day-name">Jeudi</span>
+              <input type="time" id="timeJeudi" value="08:30" class="time-input">
+            </div>
+            <div class="schedule-row">
+              <span class="day-name">Vendredi</span>
+              <input type="time" id="timeVendredi" value="08:30" class="time-input">
+            </div>
+          </div>
+
+          <div class="pronote-url-section">
+            <label for="pronoteUrlInput" class="input-label">Lien iCal Pronote (optionnel) :</label>
+            <input type="url" id="pronoteUrlInput" placeholder="https://.../ical.ics" class="url-input">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="small-btn text-btn" id="resetDefaultScheduleBtn">Horaires par défaut</button>
+          <button class="primary-btn" id="saveScheduleBtn">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER ÉPURÉ -->
+    <footer class="dashboard-footer">
+      <div class="footer-info">
+        <span>Bus C13 (Mobilités M) • Météo (Open-Meteo)</span>
+        <span>•</span>
+        <span id="lastUpdatedTime">--:--</span>
+      </div>
+      <div class="footer-shortcuts">
+        <button id="soundToggleBtn" class="footer-btn">🔔 Alerte 5 min</button>
+        <button id="testAudioBtn" class="footer-btn">🔊 Bip</button>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
