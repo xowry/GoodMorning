@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    MORNING DASHBOARD - STREAMLINED MODERN THEME
    ========================================================================== */
 
@@ -170,7 +170,7 @@ body {
 
 .clock-time {
   font-family: var(--font-mono);
-  font-size: 1.85rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: #fff;
   line-height: 1.1;
@@ -424,14 +424,11 @@ body {
   50% { opacity: 0.15; }
 }
 
-
-
-}
-
 /* Hero Bus Body */
 .hero-bus-body {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
+  min-width: 0;
   gap: 12px;
   margin-bottom: 14px;
 }
@@ -470,7 +467,7 @@ body {
 
 .time-main {
   font-family: var(--font-mono);
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: #fff;
 }
@@ -514,7 +511,7 @@ body {
 
 .target-arrival-time {
   font-family: var(--font-mono);
-  font-size: 1.85rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: #fff;
   line-height: 1.1;
@@ -1079,4 +1076,8 @@ body {
   .dashboard-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.hero-bus-body {
+  grid-template-columns: 1.2fr 1fr !important;
 }

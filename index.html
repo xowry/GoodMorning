@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -51,9 +51,6 @@
         </div>
 
         <div class="header-actions">
-          <button id="openConfigBtn" class="icon-btn" title="Modifier les horaires de cours">
-            ⚙️ Horaires
-          </button>
           <button id="refreshBtn" class="icon-btn icon-only" title="Actualiser">
             <span class="refresh-spinner" id="refreshIcon">🔄</span>
           </button>
@@ -89,7 +86,7 @@
           <div class="hero-bus-body">
             <!-- DÉPART -->
             <div class="departure-main">
-              <span class="departure-label">Départ 11 Novembre <span class="live-dot-inline" id="liveDotInline"></span></span>
+              <span class="departure-label" id="heroDepLabel">Départ 11 Novembre</span>
               <div class="departure-time-row">
                 <span class="time-main" id="heroDepTime">--:--</span>
                 <span class="delay-badge" id="heroDelayBadge">À l'heure</span>
@@ -99,7 +96,7 @@
 
             <!-- ARRIVÉE EDGAR KOFLER -->
             <div class="arrival-target-box">
-              <span class="target-badge">Arrivée Edgar Kofler</span>
+              <span class="target-badge" id="heroArrLabel">Arrivée Edgar Kofler</span>
               <div class="target-arrival-time" id="heroArrTime">--:--</div>
               <div class="target-duration" id="heroDuration">~23 min de trajet</div>
             </div>
@@ -209,52 +206,6 @@
       </section>
     </main>
 
-    <!-- CONFIGURATION DES HORAIRES MODAL -->
-    <div class="modal-backdrop" id="configModal">
-      <div class="modal-card">
-        <div class="modal-header">
-          <h3>⚙️ Horaires de Début des Cours</h3>
-          <button class="modal-close-btn" id="closeModalBtn">✕</button>
-        </div>
-        <div class="modal-body">
-          <p class="modal-desc">
-            Modifiez l'heure du 1er cours pour chaque jour. Le bus C13 à prendre sera automatiquement recalculé pour arriver 10 à 15 minutes avant.
-          </p>
-
-          <div class="weekly-schedule-grid">
-            <div class="schedule-row">
-              <span class="day-name">Lundi</span>
-              <input type="time" id="timeLundi" value="08:30" class="time-input">
-            </div>
-            <div class="schedule-row">
-              <span class="day-name">Mardi</span>
-              <input type="time" id="timeMardi" value="08:55" class="time-input">
-            </div>
-            <div class="schedule-row">
-              <span class="day-name">Mercredi</span>
-              <input type="time" id="timeMercredi" value="08:00" class="time-input">
-            </div>
-            <div class="schedule-row">
-              <span class="day-name">Jeudi</span>
-              <input type="time" id="timeJeudi" value="08:30" class="time-input">
-            </div>
-            <div class="schedule-row">
-              <span class="day-name">Vendredi</span>
-              <input type="time" id="timeVendredi" value="08:30" class="time-input">
-            </div>
-          </div>
-
-          <div class="pronote-url-section">
-            <label for="pronoteUrlInput" class="input-label">Lien iCal Pronote (optionnel) :</label>
-            <input type="url" id="pronoteUrlInput" placeholder="https://.../ical.ics" class="url-input">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="small-btn text-btn" id="resetDefaultScheduleBtn">Horaires par défaut</button>
-          <button class="primary-btn" id="saveScheduleBtn">Enregistrer</button>
-        </div>
-      </div>
-    </div>
 
     <!-- FOOTER ÉPURÉ -->
     <footer class="dashboard-footer">
