@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Morning Dashboard - Bus C13 & Lycée (Épuré)
  * Voreppe (11 Novembre) ➔ Voiron (Edgar Kofler)
  */
@@ -86,8 +86,7 @@ const state = {
   weatherData: null,
   isFetching: false,
   activeScheduleTab: 'TODAY',
-  weeklySchedule: {},
-  pronoteUrl: ''
+  weeklySchedule: {}
 };
 
 // ==========================================================================
@@ -105,28 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
 const PRONOTE_ICS = 'https://0380092u.index-education.net/pronote/ical/Edt_bugnonalexandre.ics?icalsecurise=1D398D4CD7EFE72BE078FCC71D5577FF6BC5AE899764C90D694E28A6E2065EF843B13A6D102CA3BE7BB71C78D394B481&version=2026.2.5.7&param=C96F40C77C638122BE110F0A28794C7A';
 
 function loadSavedConfig() {
-  const saved = localStorage.getItem('goodmorning_schedule_config');
-  if (saved) {
-    try {
-      const parsed = JSON.parse(saved);
-      state.weeklySchedule = parsed.schedule || JSON.parse(JSON.stringify(CONFIG.defaultWeeklySchedule));
-      state.pronoteUrl = parsed.pronoteUrl || PRONOTE_ICS;
-    } catch (e) {
-      state.weeklySchedule = JSON.parse(JSON.stringify(CONFIG.defaultWeeklySchedule));
-      state.pronoteUrl = PRONOTE_ICS;
-    }
-  } else {
-    state.weeklySchedule = JSON.parse(JSON.stringify(CONFIG.defaultWeeklySchedule));
-    state.pronoteUrl = PRONOTE_ICS;
-  }
+  state.weeklySchedule = JSON.parse(JSON.stringify(CONFIG.defaultWeeklySchedule));
 }
 
-function saveScheduleConfig() {
-  localStorage.setItem('goodmorning_schedule_config', JSON.stringify({
-    schedule: state.weeklySchedule,
-    pronoteUrl: state.pronoteUrl
-  }));
-}
+function saveScheduleConfig() {}
 
 // ==========================================================================
 // HORLOGE & DATE
@@ -220,45 +201,7 @@ function initEventListeners() {
     testAudioBtn.addEventListener('click', playMorningChime);
   }
 
-  const openConfigBtn = document.getElementById('openConfigBtn');
-  const configModal = document.getElementById('configModal');
-  const closeModalBtn = document.getElementById('closeModalBtn');
-  const saveScheduleBtn = document.getElementById('saveScheduleBtn');
-  const resetDefaultScheduleBtn = document.getElementById('resetDefaultScheduleBtn');
 
-  if (openConfigBtn && configModal && closeModalBtn) {
-    openConfigBtn.addEventListener('click', () => {
-      populateConfigModal();
-      configModal.classList.add('open');
-    });
-
-    closeModalBtn.addEventListener('click', () => {
-      configModal.classList.remove('open');
-    });
-
-    configModal.addEventListener('click', (e) => {
-      if (e.target === configModal) configModal.classList.remove('open');
-    });
-  }
-
-  if (saveScheduleBtn) {
-    saveScheduleBtn.addEventListener('click', () => {
-      readConfigModal();
-      saveScheduleConfig();
-      configModal.classList.remove('open');
-      renderSchedule();
-    });
-  }
-
-  if (resetDefaultScheduleBtn) {
-    resetDefaultScheduleBtn.addEventListener('click', () => {
-      state.weeklySchedule = JSON.parse(JSON.stringify(CONFIG.defaultWeeklySchedule));
-      state.pronoteUrl = '';
-      saveScheduleConfig();
-      populateConfigModal();
-      renderSchedule();
-    });
-  }
 }
 
 function setDirection(dir) {
@@ -272,14 +215,18 @@ function setDirection(dir) {
     dirGoBtn.classList.add('active');
     dirReturnBtn.classList.remove('active');
     document.getElementById('routeDirectionLabel').textContent = 'Direction Voiron';
-    document.getElementById('routeSubTitle').textContent = '11 Novembre ➔ Edgar Kofler';
+    document.getElementById('routeSubTitle').textContent = '11 Novembre ➞ Edgar Kofler';
     document.getElementById('routeStopsSummary').textContent = 'Arrêt Avenue du 11 Novembre';
+    document.getElementById('heroDepLabel').textContent = 'Départ 11 Novembre';
+    document.getElementById('heroArrLabel').textContent = 'Arrivée Edgar Kofler';
   } else {
     dirGoBtn.classList.remove('active');
     dirReturnBtn.classList.add('active');
     document.getElementById('routeDirectionLabel').textContent = 'Direction Voreppe';
-    document.getElementById('routeSubTitle').textContent = 'Edgar Kofler ➔ 11 Novembre';
+    document.getElementById('routeSubTitle').textContent = 'Edgar Kofler ➞ 11 Novembre';
     document.getElementById('routeStopsSummary').textContent = 'Arrêt Edgar Kofler';
+    document.getElementById('heroDepLabel').textContent = 'Départ Edgar Kofler';
+    document.getElementById('heroArrLabel').textContent = 'Arrivée 11 Novembre';
   }
 
   fetchAllData(true);
@@ -1020,41 +967,6 @@ function initChecklist() {
   }
 }
 
-// ==========================================================================
-// MODAL HORAIRES
-// ==========================================================================
-function populateConfigModal() {
-  const sched = state.weeklySchedule;
-  const setVal = (id, dayKey) => {
-    const el = document.getElementById(id);
-    if (el && sched[dayKey]) el.value = sched[dayKey].startTime || '';
-  };
-
-  setVal('timeLundi', 1);
-  setVal('timeMardi', 2);
-  setVal('timeMercredi', 3);
-  setVal('timeJeudi', 4);
-  setVal('timeVendredi', 5);
-
-  const urlInput = document.getElementById('pronoteUrlInput');
-  if (urlInput) urlInput.value = state.pronoteUrl || '';
-}
-
-function readConfigModal() {
-  const getVal = id => {
-    const el = document.getElementById(id);
-    return el ? el.value : '08:30';
-  };
-
-  if (state.weeklySchedule[1]) state.weeklySchedule[1].startTime = getVal('timeLundi');
-  if (state.weeklySchedule[2]) state.weeklySchedule[2].startTime = getVal('timeMardi');
-  if (state.weeklySchedule[3]) state.weeklySchedule[3].startTime = getVal('timeMercredi');
-  if (state.weeklySchedule[4]) state.weeklySchedule[4].startTime = getVal('timeJeudi');
-  if (state.weeklySchedule[5]) state.weeklySchedule[5].startTime = getVal('timeVendredi');
-
-  const urlInput = document.getElementById('pronoteUrlInput');
-  if (urlInput) state.pronoteUrl = urlInput.value.trim();
-}
 
 // ==========================================================================
 // ALERTE & AUDIO
