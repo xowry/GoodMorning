@@ -347,6 +347,46 @@ body {
   background: var(--c13-color);
 }
 
+/* Badge C13 fidèle au design Chrono Péri */
+.c13-badge {
+  display: inline-flex;
+  align-items: stretch;
+  padding: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  gap: 0;
+  box-shadow: 0 2px 8px rgba(239,124,0,0.45);
+}
+
+.c13-letter {
+  background: #ef7c00;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.15rem;
+  padding: 4px 9px 4px 10px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.c13-number {
+  background: #1a1a2e;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.15rem;
+  padding: 4px 10px 4px 9px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  border-left: 2px solid rgba(255,255,255,0.25);
+}
+
 .route-info {
   display: flex;
   flex-direction: column;
@@ -363,25 +403,29 @@ body {
   color: var(--text-secondary);
 }
 
-.live-status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 3px 8px;
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--emerald-400);
-}
-
-.live-dot {
-  width: 6px;
-  height: 6px;
+.live-dot-inline {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--emerald-400);
-  box-shadow: 0 0 6px var(--emerald-400);
+  box-shadow: 0 0 5px var(--emerald-400);
+  margin-left: 5px;
+  vertical-align: middle;
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+.live-dot-inline.hidden {
+  display: none;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.15; }
+}
+
+
+
 }
 
 /* Hero Bus Body */
@@ -411,8 +455,8 @@ body {
 
 .countdown-display {
   font-family: var(--font-heading);
-  font-size: 2.2rem;
-  font-weight: 800;
+  font-size: 1.3rem;
+  font-weight: 700;
   color: var(--amber-400);
   line-height: 1.1;
   margin: 2px 0 4px;
@@ -426,7 +470,7 @@ body {
 
 .time-main {
   font-family: var(--font-mono);
-  font-size: 1.35rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #fff;
 }

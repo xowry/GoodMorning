@@ -5,17 +5,20 @@
 
 const CONFIG = {
   lineId: 'SE2:C13',
+  line519Id: 'TPV:519',
   voreppe: {
     name: 'Avenue du 11 Novembre',
     city: 'Voreppe',
-    stopGo: 'SE2:9027',     // Direction Voiron
-    stopReturn: 'SE2:9028', // Direction Vizille/Grenoble
+    stopGo: 'SE2:9027',
+    stopReturn: 'SE2:9028',
+    stopReturn519: 'TPV:1000914', // Voreppe Mairie (arrivée 519)
   },
   voiron: {
     name: 'Edgar Kofler',
     city: 'Voiron',
-    stopGo: 'SE2:9031',     // Arrivée vers Voiron
-    stopReturn: 'SE2:9032', // Départ retour vers Voreppe
+    stopGo: 'SE2:9031',
+    stopReturn: 'SE2:9032',
+    stopReturn519: 'TPV:1000866', // Edgar Kofler (départ 519)
   },
   weatherCoords: {
     lat: 45.298,
@@ -314,7 +317,8 @@ async function fetchAllData(manual = false) {
     await Promise.all([
       fetchBusC13Data(),
       fetchWeatherData(),
-      fetchPronoteSchedule()
+      fetchPronoteSchedule(),
+      ...(state.direction === 'RETURN' ? [fetchLine519Data()] : [])
     ]);
 
     renderSchedule();
@@ -339,21 +343,10 @@ async function fetchAllData(manual = false) {
 // ==========================================================================
 async function fetchPronoteSchedule() {
   try {
-    const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-    const fetchUrl = isLocal
-      ? `https://corsproxy.io/?${encodeURIComponent(PRONOTE_ICS)}`
-      : '/ics';
-
-    let icsText = null;
-    try {
-      const res = await fetch(fetchUrl);
-      if (res.ok) {
-        const ct = res.headers.get('content-type') || '';
-        icsText = ct.includes('json') ? (await res.json()).contents : await res.text();
-      }
-    } catch (e) {}
-
-    if (!icsText || !icsText.includes('BEGIN:VCALENDAR')) return;
+    const res = await fetch('agenda.ics');
+    if (!res.ok) return;
+    const icsText = await res.text();
+    if (!icsText.includes('BEGIN:VCALENDAR')) return;
 
     const events = parseIcs(icsText);
     buildScheduleFromEvents(events);
@@ -364,7 +357,7 @@ async function fetchPronoteSchedule() {
 
 function parseIcs(text) {
   const events = [];
-  const lines = text.replace(/\r\n /g, '').replace(/\r\n/g, '\n').split('\n');
+  const lines = text.replace(/\r\n /g, '').replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n');
   let current = null;
 
   for (const line of lines) {
@@ -374,14 +367,19 @@ function parseIcs(text) {
 
     const colon = line.indexOf(':');
     if (colon === -1) continue;
-    const key = line.substring(0, colon).split(';')[0];
+    const keyFull = line.substring(0, colon);
+    const key = keyFull.split(';')[0];
     const val = line.substring(colon + 1);
 
-    if (key === 'DTSTART') current.start = parseIcsDate(line.substring(colon + 1), line);
-    else if (key === 'DTEND') current.end = parseIcsDate(line.substring(colon + 1), line);
-    else if (key === 'SUMMARY') current.summary = val.replace(/\\,/g, ',').trim();
+    if (key === 'DTSTART') current.start = parseIcsDate(val);
+    else if (key === 'DTEND') current.end = parseIcsDate(val);
+    else if (key === 'SUMMARY') {
+      const raw = val.replace(/\\,/g, ',').trim();
+      const parts = raw.split(' - ');
+      current.summary = parts[0].trim(); // juste la matière
+      current.teacher = parts[1] ? parts[1].trim() : '';
+    }
     else if (key === 'LOCATION') current.location = val.replace(/\\,/g, ',').trim();
-    else if (key === 'DESCRIPTION') current.description = val.replace(/\\,/g, ',').replace(/\\n/g, ' ').trim();
   }
   return events.filter(e => e.start && e.end && e.summary);
 }
@@ -438,7 +436,7 @@ function buildScheduleFromEvents(events) {
         time: `${sh}:${sm} - ${eh}:${em}`,
         subject: ev.summary,
         room: ev.location || '',
-        teacher: ev.description || '',
+        teacher: ev.teacher || '',
         code: guessCode(ev.summary)
       };
     });
@@ -450,11 +448,11 @@ function buildScheduleFromEvents(events) {
 function guessCode(subject) {
   const s = subject.toLowerCase();
   if (s.includes('math')) return 'maths';
-  if (s.includes('physique') || s.includes('chimie') || s.includes('pc')) return 'physique';
+  if (s.includes('physique') || s.includes('chimie')) return 'physique';
   if (s.includes('svt') || s.includes('science')) return 'svt';
-  if (s.includes('hist') || s.includes('géo')) return 'histoire';
-  if (s.includes('français') || s.includes('francais')) return 'francais';
-  if (s.includes('anglais') || s.includes('espagnol') || s.includes('lv')) return 'anglais';
+  if (s.includes('hist') || s.includes('geo')) return 'histoire';
+  if (s.includes('fran')) return 'francais';
+  if (s.includes('anglais') || s.includes('espagnol') || s.includes('allemand') || s.includes('lv')) return 'anglais';
   if (s.includes('eps') || s.includes('sport')) return 'eps';
   return 'maths';
 }
@@ -555,12 +553,15 @@ async function fetchBusC13Data() {
     const allTrips = [...realtimeTrips, ...ficheTrips];
     allTrips.sort((a, b) => a.depSec - b.depSec);
 
-    // Dédupliquer par depSec (garder le temps réel si même heure)
-    const seen = new Set();
+    // Dédupliquer : par tripId ET par minute (le temps réel passe en premier car trié avant)
+    const seenIds = new Set();
+    const seenMin = new Set();
     const trips = allTrips.filter(t => {
-      const key = Math.round(t.depSec / 60); // arrondi à la minute
-      if (seen.has(key)) return false;
-      seen.add(key);
+      if (t.tripId && seenIds.has(t.tripId)) return false;
+      const key = Math.round(t.depSec / 60);
+      if (seenMin.has(key)) return false;
+      if (t.tripId) seenIds.add(t.tripId);
+      seenMin.add(key);
       return true;
     });
 
@@ -578,6 +579,105 @@ async function fetchBusC13Data() {
 }
 
 
+
+// ==========================================================================
+// LIGNE 519 (RETOUR UNIQUEMENT)
+// ==========================================================================
+async function fetchLine519Data() {
+  const originStopId = CONFIG.voiron.stopReturn519;
+  const destStopId = CONFIG.voreppe.stopReturn519;
+
+  try {
+    const realtimeUrl = `https://data.mobilites-m.fr/api/routers/default/index/stops/${originStopId}/stoptimes`;
+    const ficheUrl = `https://data.mobilites-m.fr/api/ficheHoraires/json?route=${CONFIG.line519Id.replace(':', '_')}`;
+
+    const [realtimeRes, ficheRes] = await Promise.all([
+      fetch(realtimeUrl, { headers: { Origin: 'goodmorning-dashboard' } }),
+      fetch(ficheUrl, { headers: { Origin: 'goodmorning-dashboard' } })
+    ]);
+
+    const nowSec = getSecondsFromMidnight();
+    const realtimeByTrip = {};
+    const realtimeTrips = [];
+
+    if (realtimeRes.ok) {
+      const data = await realtimeRes.json();
+      if (Array.isArray(data)) {
+        data.forEach(pattern => {
+          (pattern.times || []).forEach(t => {
+            if (t.tripId) realtimeByTrip[t.tripId] = t;
+            const depSec = t.realtimeDeparture ?? t.scheduledDeparture;
+            if (depSec == null) return;
+            realtimeTrips.push({
+              tripId: t.tripId, line: '519',
+              depSec, arrSec: depSec + 10 * 60,
+              delaySec: t.departureDelay || 0,
+              isRealtime: Boolean(t.realtime),
+              realtimeState: t.realtimeState || null,
+              occupancy: 'Faible', cancelled: Boolean(t.cancelled)
+            });
+          });
+        });
+      }
+    }
+
+    const ficheTrips = [];
+    if (ficheRes.ok) {
+      const ficheData = await ficheRes.json();
+      Object.values(ficheData).forEach(direction => {
+        const arrets = direction.arrets || [];
+        const originStop = arrets.find(a => a.stopId === originStopId);
+        const destStop = arrets.find(a => a.stopId === destStopId);
+        if (!originStop) return;
+        const tripIds = (direction.trips || []).map(t => t.tripId);
+        originStop.trips.forEach((depVal, idx) => {
+          if (depVal === '|' || depVal === null) return;
+          const depSec = Number(depVal);
+          if (isNaN(depSec) || depSec < nowSec - 60) return;
+          const tripId = tripIds[idx] || `sched519-${depSec}`;
+          if (realtimeByTrip[tripId]) return;
+          let arrSec = depSec + 10 * 60;
+          if (destStop) {
+            const arrVal = destStop.trips[idx];
+            if (arrVal !== '|' && arrVal !== null && !isNaN(Number(arrVal))) arrSec = Number(arrVal);
+          }
+          ficheTrips.push({
+            tripId, line: '519', depSec, arrSec,
+            delaySec: 0, isRealtime: false, realtimeState: null,
+            occupancy: 'Faible', cancelled: false
+          });
+        });
+      });
+    }
+
+    const allTrips = [...realtimeTrips, ...ficheTrips];
+    allTrips.sort((a, b) => a.depSec - b.depSec);
+    const seen = new Set();
+    const trips519 = allTrips.filter(t => {
+      const key = Math.round(t.depSec / 60);
+      if (seen.has(key)) return false;
+      seen.add(key); return true;
+    });
+
+    // Fusionner avec les trips C13 retour
+    const upcoming519 = trips519.filter(t => t.depSec >= nowSec - 60);
+    const merged = [...state.allTrips, ...(upcoming519.length > 0 ? upcoming519 : trips519)];
+    merged.sort((a, b) => a.depSec - b.depSec);
+    const seenMerge = new Set();
+    state.allTrips = merged.filter(t => {
+      const key = Math.round(t.depSec / 60);
+      if (seenMerge.has(key)) return false;
+      seenMerge.add(key); return true;
+    });
+    state.nextBus = state.allTrips[0] || null;
+
+    renderBusHero();
+    renderTimetable();
+
+  } catch (err) {
+    console.error('Erreur API 519:', err);
+  }
+}
 
 // ==========================================================================
 // AFFICHAGE HERO BUS
@@ -603,7 +703,7 @@ function renderBusHero() {
   if (delayBadge) {
     if (!next.isRealtime) {
       delayBadge.className = 'delay-badge ontime';
-      delayBadge.textContent = 'Planifié';
+      delayBadge.textContent = 'Horaire prévu';
     } else if (delayMin === 0) {
       delayBadge.className = 'delay-badge ontime';
       delayBadge.textContent = 'À l\'heure';
@@ -616,11 +716,8 @@ function renderBusHero() {
     }
   }
 
-  const livePill = document.getElementById('liveStatusPill');
-  const liveText = document.getElementById('liveStatusText');
-  if (livePill && liveText) {
-    liveText.textContent = next.isRealtime ? 'Temps réel' : 'Planifié';
-  }
+  const liveDot = document.getElementById('liveDotInline');
+  if (liveDot) liveDot.classList.remove('hidden');
 
   updateHeroCountdown();
 }
@@ -704,6 +801,7 @@ function renderTimetable() {
           <span class="trip-meta">dans ${diffMin} min</span>
         </div>
         <div class="trip-right">
+          ${t.line === '519' ? '<span class="line-badge" style="font-size:0.7rem;padding:2px 6px;background:#78520D">519</span>' : ''}
           <span class="trip-arr-time">${arrTime}</span>
           <span class="trip-duration-tag">~${durationMin} min</span>
         </div>
@@ -772,7 +870,6 @@ function renderSimpleWeather(data) {
   document.getElementById('morningIcon').textContent = mInfo.icon;
   document.getElementById('morningDesc').textContent = mInfo.desc;
   document.getElementById('morningRain').textContent = `💧 Pluie : ${mRain}%`;
-  document.getElementById('morningTip').textContent = mTemp < 15 ? '🧥 Veste légère' : (mRain >= 30 ? '☔ Parapluie' : '👕 T-shirt');
 
   // Calcul Après-midi
   let aTemp = Math.round(daily.temperature_2m_max[0]);
@@ -790,7 +887,6 @@ function renderSimpleWeather(data) {
   document.getElementById('afternoonIcon').textContent = aInfo.icon;
   document.getElementById('afternoonDesc').textContent = aInfo.desc;
   document.getElementById('afternoonRain').textContent = `💧 Pluie : ${aRain}%`;
-  document.getElementById('afternoonTip').textContent = aTemp >= 27 ? '💧 Gourde d\'eau' : (aRain >= 30 ? '☔ Parapluie' : '☀️ Beau temps');
 }
 
 function getWeatherInfo(code, isDay = 1) {
@@ -852,10 +948,11 @@ function renderSchedule() {
   const classSec = classH * 3600 + classM * 60;
 
   // Chercher dans les trips API, sinon fallback sur la liste statique
-  const apiCandidates = state.allTrips.filter(t => t.arrSec <= classSec - 10 * 60);
+  const MARGIN_SEC = 15 * 60;
+  const apiCandidates = state.allTrips.filter(t => t.arrSec <= classSec - MARGIN_SEC);
   const tripsToSearch = apiCandidates.length > 0 ? state.allTrips : CONFIG.fallbackTrips;
   const advisedTrip = tripsToSearch
-    .filter(t => t.arrSec <= classSec - 10 * 60)
+    .filter(t => t.arrSec <= classSec - MARGIN_SEC)
     .at(-1);
 
   if (advisedTrip) {

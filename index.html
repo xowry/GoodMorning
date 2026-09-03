@@ -25,7 +25,7 @@
           <span class="greeting-dot"></span>
           <span id="greetingText">Bonjour !</span>
         </div>
-        <h1 class="main-title">Bus C13 <span class="highlight">Voreppe ⇄ Voiron</span></h1>
+        <h1 class="main-title"><span class="highlight">Voreppe ⇄ Voiron</span></h1>
         <p class="subtitle" id="routeSubTitle">11 Novembre ➔ Edgar Kofler</p>
       </div>
 
@@ -76,28 +76,25 @@
         <div class="card card-hero-bus" id="heroBusCard">
           <div class="card-header-flex">
             <div class="line-badge-group">
-              <span class="line-badge c13-badge">C13</span>
+              <span class="line-badge c13-badge"><span class="c13-letter">C</span><span class="c13-number">13</span></span>
               <div class="route-info">
                 <span class="route-direction-label" id="routeDirectionLabel">Direction Voiron</span>
                 <span class="route-stops-summary" id="routeStopsSummary">Arrêt Avenue du 11 Novembre</span>
               </div>
             </div>
-            <div class="live-status-pill" id="liveStatusPill">
-              <span class="live-dot"></span>
-              <span id="liveStatusText">Temps réel</span>
-            </div>
+
           </div>
 
           <!-- DÉPART & ARRIVÉE -->
           <div class="hero-bus-body">
             <!-- DÉPART -->
             <div class="departure-main">
-              <span class="departure-label">Départ 11 Novembre</span>
-              <div class="countdown-display" id="heroCountdown">-- min</div>
+              <span class="departure-label">Départ 11 Novembre <span class="live-dot-inline" id="liveDotInline"></span></span>
               <div class="departure-time-row">
                 <span class="time-main" id="heroDepTime">--:--</span>
                 <span class="delay-badge" id="heroDelayBadge">À l'heure</span>
               </div>
+              <div class="countdown-display" id="heroCountdown">-- min</div>
             </div>
 
             <!-- ARRIVÉE EDGAR KOFLER -->
@@ -160,7 +157,6 @@
               </div>
               <div class="period-footer">
                 <span class="period-metric" id="morningRain">💧 Pluie : 0%</span>
-                <span class="period-tip" id="morningTip">🧥 Veste légère</span>
               </div>
             </div>
 
@@ -176,7 +172,6 @@
               </div>
               <div class="period-footer">
                 <span class="period-metric" id="afternoonRain">💧 Pluie : 0%</span>
-                <span class="period-tip" id="afternoonTip">💧 Gourde d'eau</span>
               </div>
             </div>
           </div>
@@ -208,49 +203,6 @@
           <!-- Liste des Cours -->
           <div class="courses-list" id="coursesList">
             <!-- Injecté par app.js -->
-          </div>
-        </div>
-
-        <!-- 3. CHECKLIST SAC (RAPIDE & DISCRÈTE) -->
-        <div class="card card-checklist-compact">
-          <div class="card-title-row">
-            <h2 class="card-title">
-              <span class="title-icon">🎒</span> Checklist Sac
-            </h2>
-            <button id="resetChecklistBtn" class="small-btn text-btn">Réinitialiser</button>
-          </div>
-
-          <div class="checklist-grid" id="checklistItems">
-            <label class="check-item">
-              <input type="checkbox" data-id="pass" class="check-input">
-              <span class="custom-checkbox"></span>
-              <span class="check-text">Pass OùRA / Transport</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-id="carnet" class="check-input">
-              <span class="custom-checkbox"></span>
-              <span class="check-text">Carnet / Badge</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-id="trousse" class="check-input">
-              <span class="custom-checkbox"></span>
-              <span class="check-text">Trousse & Cahiers</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-id="gourde" class="check-input">
-              <span class="custom-checkbox"></span>
-              <span class="check-text">Gourde d'eau</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-id="cles" class="check-input">
-              <span class="custom-checkbox"></span>
-              <span class="check-text">Clés de maison</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-id="audio" class="check-input">
-              <span class="custom-checkbox"></span>
-              <span class="check-text">Téléphone & Écouteurs</span>
-            </label>
           </div>
         </div>
 
