@@ -346,24 +346,39 @@ async function fetchBusC13Data() {
       fetch(ficheUrl, { headers: { Origin: 'goodmorning-dashboard' } })
     ]);
 
-    // Temps réel : indexer par tripId
+    const nowSec = getSecondsFromMidnight();
+
+    // Temps réel : construire les trips directement depuis stoptimes
     const realtimeByTrip = {};
+    const realtimeTrips = [];
     if (realtimeRes.ok) {
       const realtimeData = await realtimeRes.json();
       if (Array.isArray(realtimeData)) {
         realtimeData.forEach(pattern => {
           (pattern.times || []).forEach(t => {
             if (t.tripId) realtimeByTrip[t.tripId] = t;
+            const depSec = t.realtimeDeparture ?? t.scheduledDeparture;
+            if (depSec == null) return;
+            realtimeTrips.push({
+              tripId: t.tripId,
+              stopName: originStopId,
+              depSec,
+              arrSec: depSec + CONFIG.averageTripDurationMin * 60,
+              delaySec: t.departureDelay || 0,
+              isRealtime: Boolean(t.realtime),
+              realtimeState: t.realtimeState || null,
+              occupancy: t.occupancy || 'Faible',
+              cancelled: Boolean(t.cancelled)
+            });
           });
         });
       }
     }
 
-    // ficheHoraires : extraire les horaires planifiés de l'arrêt origine et destination
-    const trips = [];
+    // ficheHoraires : tous les horaires planifiés de la journée
+    const ficheTrips = [];
     if (ficheRes.ok) {
       const ficheData = await ficheRes.json();
-      // Parcourir les deux directions disponibles
       Object.values(ficheData).forEach(direction => {
         const arrets = direction.arrets || [];
         const originStop = arrets.find(a => a.stopId === originStopId);
@@ -375,45 +390,51 @@ async function fetchBusC13Data() {
         originStop.trips.forEach((depVal, idx) => {
           if (depVal === '|' || depVal === null) return;
           const depSec = Number(depVal);
-          if (isNaN(depSec)) return;
+          if (isNaN(depSec) || depSec < nowSec - 60) return;
 
           const tripId = tripIds[idx] || `sched-${depSec}`;
-          const rt = realtimeByTrip[tripId];
+          // Ne pas dupliquer un trip déjà en temps réel
+          if (realtimeByTrip[tripId]) return;
 
-          const isRealtime = Boolean(rt?.realtime);
-          const finalDepSec = isRealtime ? rt.realtimeDeparture : depSec;
-          const delaySec = rt?.departureDelay || 0;
-
-          let arrSec = finalDepSec + CONFIG.averageTripDurationMin * 60;
+          let arrSec = depSec + CONFIG.averageTripDurationMin * 60;
           if (destStop) {
             const arrVal = destStop.trips[idx];
             if (arrVal !== '|' && arrVal !== null && !isNaN(Number(arrVal))) {
               const plannedArr = Number(arrVal);
               const dur = Math.round((plannedArr - depSec) / 60);
-              if (dur >= 10 && dur <= 60) {
-                arrSec = isRealtime ? plannedArr + delaySec : plannedArr;
-              }
+              if (dur >= 10 && dur <= 60) arrSec = plannedArr;
             }
           }
 
-          trips.push({
+          ficheTrips.push({
             tripId,
             stopName: originStop.stopName,
-            depSec: finalDepSec,
+            depSec,
             arrSec,
-            delaySec,
-            isRealtime,
-            realtimeState: rt?.realtimeState || null,
-            occupancy: rt?.occupancy || 'Faible',
-            cancelled: Boolean(rt?.cancelled)
+            delaySec: 0,
+            isRealtime: false,
+            realtimeState: null,
+            occupancy: 'Faible',
+            cancelled: false
           });
         });
       });
     }
 
-    trips.sort((a, b) => a.depSec - b.depSec);
-    const nowSec = getSecondsFromMidnight();
-    const upcomingTrips = trips.filter(t => t.depSec >= (nowSec - 60));
+    // Fusionner : temps réel en priorité + ficheHoraires pour les suivants
+    const allTrips = [...realtimeTrips, ...ficheTrips];
+    allTrips.sort((a, b) => a.depSec - b.depSec);
+
+    // Dédupliquer par depSec (garder le temps réel si même heure)
+    const seen = new Set();
+    const trips = allTrips.filter(t => {
+      const key = Math.round(t.depSec / 60); // arrondi à la minute
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+
+    const upcomingTrips = trips.filter(t => t.depSec >= nowSec - 60);
     state.allTrips = upcomingTrips.length > 0 ? upcomingTrips : trips;
     state.nextBus = state.allTrips[0] || null;
 
