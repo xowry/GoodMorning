@@ -338,26 +338,22 @@ async function fetchAllData(manual = false) {
 // PRONOTE iCal
 // ==========================================================================
 async function fetchPronoteSchedule() {
-  const url = state.pronoteUrl || PRONOTE_ICS;
-  if (!url) return;
-
   try {
-    const proxies = [
-      `https://corsproxy.io/?${encodeURIComponent(url)}`,
-      `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`
-    ];
+    const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    const fetchUrl = isLocal
+      ? `https://corsproxy.io/?${encodeURIComponent(PRONOTE_ICS)}`
+      : '/ics';
+
     let icsText = null;
-    for (const proxyUrl of proxies) {
-      try {
-        const res = await fetch(proxyUrl);
-        if (!res.ok) continue;
+    try {
+      const res = await fetch(fetchUrl);
+      if (res.ok) {
         const ct = res.headers.get('content-type') || '';
         icsText = ct.includes('json') ? (await res.json()).contents : await res.text();
-        if (icsText && icsText.includes('BEGIN:VCALENDAR')) break;
-        icsText = null;
-      } catch (e) { continue; }
-    }
-    if (!icsText) return;
+      }
+    } catch (e) {}
+
+    if (!icsText || !icsText.includes('BEGIN:VCALENDAR')) return;
 
     const events = parseIcs(icsText);
     buildScheduleFromEvents(events);
