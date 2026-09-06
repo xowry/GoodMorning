@@ -475,7 +475,6 @@ body {
 .hero-bus-body {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  min-width: 0;
   gap: 12px;
   margin-bottom: 14px;
 }
@@ -1149,8 +1148,4 @@ body {
   .dashboard-grid {
     grid-template-columns: 1fr;
   }
-}
-
-.hero-bus-body {
-  grid-template-columns: 1.2fr 1fr !important;
 }
