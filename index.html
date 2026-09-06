@@ -1,16 +1,21 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Morning Dashboard - Bus C13 & Lycée</title>
-  <meta name="description" content="Dashboard épuré du matin : Bus C13 Voreppe -> Voiron Edgar Kofler, météo matin/après-midi et emploi du temps lycée.">
+  <title>Morning Dashboard</title>
+  <meta name="description"
+    content="Dashboard Voreppe -> Voiron Edgar Kofler, météo matin/après-midi et emploi du temps lycée.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="app-background">
     <div class="glow glow-1"></div>
@@ -33,7 +38,8 @@
         <!-- Live Clock -->
         <div class="clock-card">
           <div class="clock-time">
-            <span id="clockHours">--</span>:<span id="clockMinutes">--</span><span class="clock-seconds" id="clockSeconds">--</span>
+            <span id="clockHours">--</span>:<span id="clockMinutes">--</span><span class="clock-seconds"
+              id="clockSeconds">--</span>
           </div>
           <div class="clock-date" id="clockDate">Chargement...</div>
         </div>
@@ -65,15 +71,15 @@
 
     <!-- MAIN TWO-COLUMN GRID -->
     <main class="dashboard-grid">
-      
+
       <!-- COLONNE GAUCHE : TRANSPORT BUS C13 -->
       <section class="grid-col col-bus">
-        
+
         <!-- PROCHAIN BUS C13 (HERO) -->
         <div class="card card-hero-bus" id="heroBusCard">
           <div class="card-header-flex">
             <div class="line-badge-group">
-              <span class="line-badge c13-badge"><span class="c13-letter">C</span><span class="c13-number">13</span></span>
+              <span id="heroLineBadge"><span class="line-badge c13-badge">C13</span></span>
               <div class="route-info">
                 <span class="route-direction-label" id="routeDirectionLabel">Direction Voiron</span>
                 <span class="route-stops-summary" id="routeStopsSummary">Arrêt Avenue du 11 Novembre</span>
@@ -131,12 +137,12 @@
 
       <!-- COLONNE DROITE : MÉTÉO (JUSTE AU-DESSUS) PUIS EMPLOI DU TEMPS -->
       <section class="grid-col col-school">
-        
+
         <!-- 1. MÉTÉO MATIN & APRÈS-MIDI (COMPACTE) -->
         <div class="card card-weather-simple" id="weatherCard">
           <div class="card-title-row">
             <h2 class="card-title">
-              <span class="title-icon">🌤️</span> Météo du Jour • Voreppe & Voiron
+              <span class="title-icon">🌤️</span> Météo du Jour •
             </h2>
             <span class="weather-temp-now" id="weatherCurrentSummary">--°C</span>
           </div>
@@ -145,7 +151,7 @@
             <!-- MATIN -->
             <div class="weather-period-card morning-card">
               <div class="period-header">
-                <span class="period-name">🌅 Matin (Trajet & Cours)</span>
+                <span class="period-name">🌅 Matin</span>
                 <span class="period-icon" id="morningIcon">☀️</span>
               </div>
               <div class="period-body">
@@ -160,7 +166,7 @@
             <!-- APRÈS-MIDI -->
             <div class="weather-period-card afternoon-card">
               <div class="period-header">
-                <span class="period-name">🌇 Après-midi (Sortie)</span>
+                <span class="period-name">🌇 Après-midi</span>
                 <span class="period-icon" id="afternoonIcon">🌤️</span>
               </div>
               <div class="period-body">
@@ -193,7 +199,8 @@
               <span class="summary-start">Début des cours : <strong id="summaryStartTime">08h30</strong></span>
             </div>
             <div class="summary-bus-pill" id="summaryBusPill">
-              🚌 Bus conseillé : <strong id="summaryBusTime">07h51</strong> <span id="summaryBusMargin">(16 min d'avance)</span>
+              🚌 Bus conseillé : <strong id="summaryBusTime">07h51</strong> <span id="summaryBusMargin">(16 min
+                d'avance)</span>
             </div>
           </div>
 
@@ -210,7 +217,7 @@
     <!-- FOOTER ÉPURÉ -->
     <footer class="dashboard-footer">
       <div class="footer-info">
-        <span>Bus C13 (Mobilités M) • Météo (Open-Meteo)</span>
+        <span>Bus (Mobilités M) • Météo (Open-Meteo)</span>
         <span>•</span>
         <span id="lastUpdatedTime">--:--</span>
       </div>
@@ -223,4 +230,5 @@
 
   <script src="app.js"></script>
 </body>
+
 </html>
