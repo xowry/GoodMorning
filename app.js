@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Morning Dashboard - Bus C13 & Lycée (Épuré)
  * Voreppe (11 Novembre) ➔ Voiron (Edgar Kofler)
  */
@@ -11,65 +11,83 @@ const CONFIG = {
     city: 'Voreppe',
     stopGo: 'SE2:9027',
     stopReturn: 'SE2:9028',
-    stopReturn519: 'TPV:1000914', // Voreppe Mairie (arrivée 519)
+    stopReturn519: 'TPV:1001846', // Voreppe Mairie (arrivée 519)
   },
   voiron: {
     name: 'Edgar Kofler',
     city: 'Voiron',
     stopGo: 'SE2:9031',
     stopReturn: 'SE2:9032',
-    stopReturn519: 'TPV:1000866', // Edgar Kofler (départ 519)
+    stopReturn519: 'TPV:1001804', // Edgar Kofler (départ 519)
+  },
+  schedule519Return: {
+    // Horaires garantis de la ligne 519 (sens Edgar Kofler -> Voreppe Mairie, du lundi au vendredi)
+    1: [{ dep: '17:25', arr: '17:49' }], // Lundi
+    2: [{ dep: '17:25', arr: '17:49' }], // Mardi
+    3: [{ dep: '12:21', arr: '12:46' }], // Mercredi
+    4: [{ dep: '17:25', arr: '17:49' }], // Jeudi
+    5: [{ dep: '17:25', arr: '17:49' }], // Vendredi
   },
   weatherCoords: {
     lat: 45.298,
     lon: 5.637,
-    city: 'Voreppe & Voiron'
+    city: ''
   },
   refreshIntervalSec: 30,
   averageTripDurationMin: 23,
   // Horaires de secours si ficheHoraires ne couvre pas l'heure du cours
   fallbackTrips: [
-    { depSec: 6*3600+30*60, arrSec: 6*3600+53*60 },
-    { depSec: 7*3600+7*60,  arrSec: 7*3600+30*60 },
-    { depSec: 7*3600+15*60, arrSec: 7*3600+38*60 },
-    { depSec: 7*3600+33*60, arrSec: 7*3600+56*60 },
-    { depSec: 8*3600+7*60,  arrSec: 8*3600+30*60 },
-    { depSec: 8*3600+30*60, arrSec: 8*3600+53*60 },
+    { depSec: 6 * 3600 + 30 * 60, arrSec: 6 * 3600 + 53 * 60 },
+    { depSec: 7 * 3600 + 7 * 60, arrSec: 7 * 3600 + 30 * 60 },
+    { depSec: 7 * 3600 + 15 * 60, arrSec: 7 * 3600 + 38 * 60 },
+    { depSec: 7 * 3600 + 33 * 60, arrSec: 7 * 3600 + 56 * 60 },
+    { depSec: 8 * 3600 + 7 * 60, arrSec: 8 * 3600 + 30 * 60 },
+    { depSec: 8 * 3600 + 30 * 60, arrSec: 8 * 3600 + 53 * 60 },
   ],
   // Horaires hebdomadaires fournis par l'utilisateur
   defaultWeeklySchedule: {
-    1: { name: 'Lundi', startTime: '08:30', courses: [
-      { time: '08:30 - 09:30', subject: 'Mathématiques', room: 'B204', teacher: 'M. Lambert', code: 'maths' },
-      { time: '09:30 - 10:30', subject: 'Histoire-Géographie', room: 'A102', teacher: 'Mme Girard', code: 'histoire' },
-      { time: '10:45 - 12:45', subject: 'Physique-Chimie', room: 'Labo 2', teacher: 'M. Perrin', code: 'physique' },
-      { time: '14:00 - 16:00', subject: 'Anglais LV1', room: 'C301', teacher: 'Mme Smith', code: 'anglais' },
-      { time: '16:00 - 17:00', subject: 'Français', room: 'B105', teacher: 'Mme Roux', code: 'francais' }
-    ]},
-    2: { name: 'Mardi', startTime: '08:55', courses: [
-      { time: '08:55 - 09:55', subject: 'Français', room: 'B105', teacher: 'Mme Roux', code: 'francais' },
-      { time: '09:55 - 11:55', subject: 'SVT (Sciences)', room: 'Labo SVT 1', teacher: 'M. Morel', code: 'svt' },
-      { time: '13:30 - 15:30', subject: 'EPS (Sport)', room: 'Gymnase Kofler', teacher: 'M. Fabre', code: 'eps' },
-      { time: '15:45 - 17:45', subject: 'Espagnol LV2', room: 'C203', teacher: 'Mme Garcia', code: 'anglais' }
-    ]},
-    3: { name: 'Mercredi', startTime: '08:00', courses: [
-      { time: '08:00 - 10:00', subject: 'Mathématiques', room: 'B204', teacher: 'M. Lambert', code: 'maths' },
-      { time: '10:15 - 11:15', subject: 'Histoire-Géographie', room: 'A102', teacher: 'Mme Girard', code: 'histoire' },
-      { time: '11:15 - 12:15', subject: 'Enseignement Scientifique', room: 'Amphi 1', teacher: 'Mme Bonnet', code: 'physique' }
-    ]},
-    4: { name: 'Jeudi', startTime: '08:30', courses: [
-      { time: '08:30 - 10:30', subject: 'Physique-Chimie', room: 'Labo 2', teacher: 'M. Perrin', code: 'physique' },
-      { time: '10:45 - 11:45', subject: 'Français', room: 'B105', teacher: 'Mme Roux', code: 'francais' },
-      { time: '11:45 - 12:45', subject: 'Anglais LV1', room: 'C301', teacher: 'Mme Smith', code: 'anglais' },
-      { time: '14:00 - 16:00', subject: 'Mathématiques', room: 'B204', teacher: 'M. Lambert', code: 'maths' },
-      { time: '16:00 - 17:00', subject: 'EMC / Vie de classe', room: 'A102', teacher: 'Mme Girard', code: 'histoire' }
-    ]},
-    5: { name: 'Vendredi', startTime: '08:30', courses: [
-      { time: '08:30 - 09:30', subject: 'Français', room: 'B105', teacher: 'Mme Roux', code: 'francais' },
-      { time: '09:30 - 11:30', subject: 'Mathématiques', room: 'B204', teacher: 'M. Lambert', code: 'maths' },
-      { time: '11:30 - 12:30', subject: 'Histoire-Géographie', room: 'A102', teacher: 'Mme Girard', code: 'histoire' },
-      { time: '14:00 - 15:00', subject: 'Espagnol LV2', room: 'C203', teacher: 'Mme Garcia', code: 'anglais' },
-      { time: '15:15 - 17:15', subject: 'SVT (Sciences)', room: 'Labo SVT 1', teacher: 'M. Morel', code: 'svt' }
-    ]},
+    1: {
+      name: 'Lundi', startTime: '08:30', courses: [
+        { time: '08:30 - 09:30', subject: 'Mathématiques', room: 'B204', teacher: 'M. Lambert', code: 'maths' },
+        { time: '09:30 - 10:30', subject: 'Histoire-Géographie', room: 'A102', teacher: 'Mme Girard', code: 'histoire' },
+        { time: '10:45 - 12:45', subject: 'Physique-Chimie', room: 'Labo 2', teacher: 'M. Perrin', code: 'physique' },
+        { time: '14:00 - 16:00', subject: 'Anglais LV1', room: 'C301', teacher: 'Mme Smith', code: 'anglais' },
+        { time: '16:00 - 17:00', subject: 'Français', room: 'B105', teacher: 'Mme Roux', code: 'francais' }
+      ]
+    },
+    2: {
+      name: 'Mardi', startTime: '08:55', courses: [
+        { time: '08:55 - 09:55', subject: 'Français', room: 'B105', teacher: 'Mme Roux', code: 'francais' },
+        { time: '09:55 - 11:55', subject: 'SVT (Sciences)', room: 'Labo SVT 1', teacher: 'M. Morel', code: 'svt' },
+        { time: '13:30 - 15:30', subject: 'EPS (Sport)', room: 'Gymnase Kofler', teacher: 'M. Fabre', code: 'eps' },
+        { time: '15:45 - 17:45', subject: 'Espagnol LV2', room: 'C203', teacher: 'Mme Garcia', code: 'anglais' }
+      ]
+    },
+    3: {
+      name: 'Mercredi', startTime: '08:00', courses: [
+        { time: '08:00 - 10:00', subject: 'Mathématiques', room: 'B204', teacher: 'M. Lambert', code: 'maths' },
+        { time: '10:15 - 11:15', subject: 'Histoire-Géographie', room: 'A102', teacher: 'Mme Girard', code: 'histoire' },
+        { time: '11:15 - 12:15', subject: 'Enseignement Scientifique', room: 'Amphi 1', teacher: 'Mme Bonnet', code: 'physique' }
+      ]
+    },
+    4: {
+      name: 'Jeudi', startTime: '08:30', courses: [
+        { time: '08:30 - 10:30', subject: 'Physique-Chimie', room: 'Labo 2', teacher: 'M. Perrin', code: 'physique' },
+        { time: '10:45 - 11:45', subject: 'Français', room: 'B105', teacher: 'Mme Roux', code: 'francais' },
+        { time: '11:45 - 12:45', subject: 'Anglais LV1', room: 'C301', teacher: 'Mme Smith', code: 'anglais' },
+        { time: '14:00 - 16:00', subject: 'Mathématiques', room: 'B204', teacher: 'M. Lambert', code: 'maths' },
+        { time: '16:00 - 17:00', subject: 'EMC / Vie de classe', room: 'A102', teacher: 'Mme Girard', code: 'histoire' }
+      ]
+    },
+    5: {
+      name: 'Vendredi', startTime: '08:30', courses: [
+        { time: '08:30 - 09:30', subject: 'Français', room: 'B105', teacher: 'Mme Roux', code: 'francais' },
+        { time: '09:30 - 11:30', subject: 'Mathématiques', room: 'B204', teacher: 'M. Lambert', code: 'maths' },
+        { time: '11:30 - 12:30', subject: 'Histoire-Géographie', room: 'A102', teacher: 'Mme Girard', code: 'histoire' },
+        { time: '14:00 - 15:00', subject: 'Espagnol LV2', room: 'C203', teacher: 'Mme Garcia', code: 'anglais' },
+        { time: '15:15 - 17:15', subject: 'SVT (Sciences)', room: 'Labo SVT 1', teacher: 'M. Morel', code: 'svt' }
+      ]
+    },
     6: { name: 'Samedi', startTime: null, courses: [] },
     0: { name: 'Dimanche', startTime: null, courses: [] }
   }
@@ -107,7 +125,7 @@ function loadSavedConfig() {
   state.weeklySchedule = JSON.parse(JSON.stringify(CONFIG.defaultWeeklySchedule));
 }
 
-function saveScheduleConfig() {}
+function saveScheduleConfig() { }
 
 // ==========================================================================
 // HORLOGE & DATE
@@ -115,11 +133,11 @@ function saveScheduleConfig() {}
 function initClock() {
   const update = () => {
     const now = new Date();
-    
+
     const h = String(now.getHours()).padStart(2, '0');
     const m = String(now.getMinutes()).padStart(2, '0');
     const s = String(now.getSeconds()).padStart(2, '0');
-    
+
     const hEl = document.getElementById('clockHours');
     const mEl = document.getElementById('clockMinutes');
     const sEl = document.getElementById('clockSeconds');
@@ -223,10 +241,10 @@ function setDirection(dir) {
     dirGoBtn.classList.remove('active');
     dirReturnBtn.classList.add('active');
     document.getElementById('routeDirectionLabel').textContent = 'Direction Voreppe';
-    document.getElementById('routeSubTitle').textContent = 'Edgar Kofler ➞ 11 Novembre';
+    document.getElementById('routeSubTitle').textContent = 'Edgar Kofler ➞ 11 Novembre / Mairie';
     document.getElementById('routeStopsSummary').textContent = 'Arrêt Edgar Kofler';
     document.getElementById('heroDepLabel').textContent = 'Départ Edgar Kofler';
-    document.getElementById('heroArrLabel').textContent = 'Arrivée 11 Novembre';
+    document.getElementById('heroArrLabel').textContent = 'Arrivée Voreppe';
   }
 
   fetchAllData(true);
@@ -264,9 +282,12 @@ async function fetchAllData(manual = false) {
     await Promise.all([
       fetchBusC13Data(),
       fetchWeatherData(),
-      fetchPronoteSchedule(),
-      ...(state.direction === 'RETURN' ? [fetchLine519Data()] : [])
+      fetchPronoteSchedule()
     ]);
+
+    if (state.direction === 'RETURN') {
+      await fetchLine519Data();
+    }
 
     renderSchedule();
 
@@ -335,8 +356,8 @@ function parseIcsDate(val, fullLine) {
   // Format: 20250115T080000Z ou 20250115T080000 avec TZID
   const clean = val.replace('Z', '');
   const isUTC = val.endsWith('Z');
-  const y = clean.substring(0,4), mo = clean.substring(4,6), d = clean.substring(6,8);
-  const h = clean.substring(9,11), mi = clean.substring(11,13), s = clean.substring(13,15) || '00';
+  const y = clean.substring(0, 4), mo = clean.substring(4, 6), d = clean.substring(6, 8);
+  const h = clean.substring(9, 11), mi = clean.substring(11, 13), s = clean.substring(13, 15) || '00';
   const dt = new Date(`${y}-${mo}-${d}T${h}:${mi}:${s}${isUTC ? 'Z' : ''}`);
   return isNaN(dt) ? null : dt;
 }
@@ -344,7 +365,7 @@ function parseIcsDate(val, fullLine) {
 function buildScheduleFromEvents(events) {
   // Construire un emploi du temps sur 14 jours à partir d'aujourd'hui
   const today = new Date();
-  today.setHours(0,0,0,0);
+  today.setHours(0, 0, 0, 0);
   const limit = new Date(today);
   limit.setDate(limit.getDate() + 14);
 
@@ -372,13 +393,13 @@ function buildScheduleFromEvents(events) {
 
     dayData.courses.sort((a, b) => a.start - b.start);
     const firstCourse = dayData.courses[0];
-    const startTime = `${String(firstCourse.start.getHours()).padStart(2,'0')}:${String(firstCourse.start.getMinutes()).padStart(2,'0')}`;
+    const startTime = `${String(firstCourse.start.getHours()).padStart(2, '0')}:${String(firstCourse.start.getMinutes()).padStart(2, '0')}`;
 
     const courses = dayData.courses.map(ev => {
-      const sh = String(ev.start.getHours()).padStart(2,'0');
-      const sm = String(ev.start.getMinutes()).padStart(2,'0');
-      const eh = String(ev.end.getHours()).padStart(2,'0');
-      const em = String(ev.end.getMinutes()).padStart(2,'0');
+      const sh = String(ev.start.getHours()).padStart(2, '0');
+      const sm = String(ev.start.getMinutes()).padStart(2, '0');
+      const eh = String(ev.end.getHours()).padStart(2, '0');
+      const em = String(ev.end.getMinutes()).padStart(2, '0');
       return {
         time: `${sh}:${sm} - ${eh}:${em}`,
         subject: ev.summary,
@@ -417,8 +438,8 @@ async function fetchBusC13Data() {
     const ficheUrl = `https://data.mobilites-m.fr/api/ficheHoraires/json?route=${CONFIG.lineId.replace(':', '_')}`;
 
     const [realtimeRes, ficheRes] = await Promise.all([
-      fetch(realtimeUrl, { headers: { Origin: 'goodmorning-dashboard' } }),
-      fetch(ficheUrl, { headers: { Origin: 'goodmorning-dashboard' } })
+      fetch(realtimeUrl, { headers: { Origin: 'goodmorning-dashboard' } }).catch(() => null),
+      fetch(ficheUrl, { headers: { Origin: 'goodmorning-dashboard' } }).catch(() => null)
     ]);
 
     const nowSec = getSecondsFromMidnight();
@@ -426,74 +447,89 @@ async function fetchBusC13Data() {
     // Temps réel : construire les trips directement depuis stoptimes
     const realtimeByTrip = {};
     const realtimeTrips = [];
-    if (realtimeRes.ok) {
-      const realtimeData = await realtimeRes.json();
-      if (Array.isArray(realtimeData)) {
-        realtimeData.forEach(pattern => {
-          (pattern.times || []).forEach(t => {
-            if (t.tripId) realtimeByTrip[t.tripId] = t;
-            const depSec = t.realtimeDeparture ?? t.scheduledDeparture;
-            if (depSec == null) return;
-            realtimeTrips.push({
-              tripId: t.tripId,
-              stopName: originStopId,
-              depSec,
-              arrSec: depSec + CONFIG.averageTripDurationMin * 60,
-              delaySec: t.departureDelay || 0,
-              isRealtime: Boolean(t.realtime),
-              realtimeState: t.realtimeState || null,
-              occupancy: t.occupancy || 'Faible',
-              cancelled: Boolean(t.cancelled)
+    if (realtimeRes && realtimeRes.ok) {
+      try {
+        const text = await realtimeRes.text();
+        if (text && text.trim().length > 2) {
+          const realtimeData = JSON.parse(text);
+          if (Array.isArray(realtimeData)) {
+            realtimeData.forEach(pattern => {
+              (pattern.times || []).forEach(t => {
+                if (t.tripId) realtimeByTrip[t.tripId] = t;
+                const depSec = t.realtimeDeparture ?? t.scheduledDeparture;
+                if (depSec == null) return;
+                realtimeTrips.push({
+                  tripId: t.tripId,
+                  line: 'C13',
+                  stopName: originStopId,
+                  depSec,
+                  arrSec: depSec + CONFIG.averageTripDurationMin * 60,
+                  delaySec: t.departureDelay || 0,
+                  isRealtime: Boolean(t.realtime),
+                  realtimeState: t.realtimeState || null,
+                  occupancy: t.occupancy || 'Faible',
+                  cancelled: Boolean(t.cancelled)
+                });
+              });
             });
-          });
-        });
+          }
+        }
+      } catch (e) {
+        console.warn('Erreur lecture stoptimes C13:', e);
       }
     }
 
     // ficheHoraires : tous les horaires planifiés de la journée
     const ficheTrips = [];
-    if (ficheRes.ok) {
-      const ficheData = await ficheRes.json();
-      Object.values(ficheData).forEach(direction => {
-        const arrets = direction.arrets || [];
-        const originStop = arrets.find(a => a.stopId === originStopId);
-        const destStop = arrets.find(a => a.stopId === destStopId);
-        if (!originStop) return;
+    if (ficheRes && ficheRes.ok && ficheRes.status === 200) {
+      try {
+        const text = await ficheRes.text();
+        if (text && text.trim().length > 2) {
+          const ficheData = JSON.parse(text);
+          Object.values(ficheData).forEach(direction => {
+            const arrets = direction.arrets || [];
+            const originStop = arrets.find(a => a.stopId === originStopId);
+            const destStop = arrets.find(a => a.stopId === destStopId);
+            if (!originStop) return;
 
-        const tripIds = (direction.trips || []).map(t => t.tripId);
+            const tripIds = (direction.trips || []).map(t => t.tripId);
 
-        originStop.trips.forEach((depVal, idx) => {
-          if (depVal === '|' || depVal === null) return;
-          const depSec = Number(depVal);
-          if (isNaN(depSec) || depSec < nowSec - 60) return;
+            originStop.trips.forEach((depVal, idx) => {
+              if (depVal === '|' || depVal === null) return;
+              const depSec = Number(depVal);
+              if (isNaN(depSec) || depSec < nowSec - 60) return;
 
-          const tripId = tripIds[idx] || `sched-${depSec}`;
-          // Ne pas dupliquer un trip déjà en temps réel
-          if (realtimeByTrip[tripId]) return;
+              const tripId = tripIds[idx] || `sched-${depSec}`;
+              if (realtimeByTrip[tripId]) return;
 
-          let arrSec = depSec + CONFIG.averageTripDurationMin * 60;
-          if (destStop) {
-            const arrVal = destStop.trips[idx];
-            if (arrVal !== '|' && arrVal !== null && !isNaN(Number(arrVal))) {
-              const plannedArr = Number(arrVal);
-              const dur = Math.round((plannedArr - depSec) / 60);
-              if (dur >= 10 && dur <= 60) arrSec = plannedArr;
-            }
-          }
+              let arrSec = depSec + CONFIG.averageTripDurationMin * 60;
+              if (destStop) {
+                const arrVal = destStop.trips[idx];
+                if (arrVal !== '|' && arrVal !== null && !isNaN(Number(arrVal))) {
+                  const plannedArr = Number(arrVal);
+                  const dur = Math.round((plannedArr - depSec) / 60);
+                  if (dur >= 10 && dur <= 60) arrSec = plannedArr;
+                }
+              }
 
-          ficheTrips.push({
-            tripId,
-            stopName: originStop.stopName,
-            depSec,
-            arrSec,
-            delaySec: 0,
-            isRealtime: false,
-            realtimeState: null,
-            occupancy: 'Faible',
-            cancelled: false
+              ficheTrips.push({
+                tripId,
+                line: 'C13',
+                stopName: originStop.stopName,
+                depSec,
+                arrSec,
+                delaySec: 0,
+                isRealtime: false,
+                realtimeState: null,
+                occupancy: 'Faible',
+                cancelled: false
+              });
+            });
           });
-        });
-      });
+        }
+      } catch (e) {
+        console.warn('Erreur lecture fiche C13:', e);
+      }
     }
 
     // Fusionner : temps réel en priorité + ficheHoraires pour les suivants
@@ -513,7 +549,7 @@ async function fetchBusC13Data() {
     });
 
     const upcomingTrips = trips.filter(t => t.depSec >= nowSec - 60);
-    state.allTrips = upcomingTrips.length > 0 ? upcomingTrips : trips;
+    state.allTrips = upcomingTrips;
     state.nextBus = state.allTrips[0] || null;
 
     renderBusHero();
@@ -528,101 +564,173 @@ async function fetchBusC13Data() {
 
 
 // ==========================================================================
-// LIGNE 519 (RETOUR UNIQUEMENT)
+// LIGNE 519 (RETOUR UNIQUEMENT : EDGAR KOFLER -> VOREPPE MAIRIE, LUN AU VEN)
 // ==========================================================================
 async function fetchLine519Data() {
-  const originStopId = CONFIG.voiron.stopReturn519;
-  const destStopId = CONFIG.voreppe.stopReturn519;
+  // Le 519 circule uniquement du lundi au vendredi
+  const now = new Date();
+  const dayOfWeek = now.getDay(); // 0 = Dim, 1 = Lun, ..., 5 = Ven, 6 = Sam
+  if (dayOfWeek < 1 || dayOfWeek > 5) return;
+
+  const originStopId = CONFIG.voiron.stopReturn519; // TPV:1001804 (Edgar Kofler)
+  const destStopId = CONFIG.voreppe.stopReturn519;  // TPV:1001846 (Voreppe Mairie)
 
   try {
     const realtimeUrl = `https://data.mobilites-m.fr/api/routers/default/index/stops/${originStopId}/stoptimes`;
     const ficheUrl = `https://data.mobilites-m.fr/api/ficheHoraires/json?route=${CONFIG.line519Id.replace(':', '_')}`;
 
     const [realtimeRes, ficheRes] = await Promise.all([
-      fetch(realtimeUrl, { headers: { Origin: 'goodmorning-dashboard' } }),
-      fetch(ficheUrl, { headers: { Origin: 'goodmorning-dashboard' } })
+      fetch(realtimeUrl, { headers: { Origin: 'goodmorning-dashboard' } }).catch(() => null),
+      fetch(ficheUrl, { headers: { Origin: 'goodmorning-dashboard' } }).catch(() => null)
     ]);
 
     const nowSec = getSecondsFromMidnight();
     const realtimeByTrip = {};
     const realtimeTrips = [];
 
-    if (realtimeRes.ok) {
-      const data = await realtimeRes.json();
-      if (Array.isArray(data)) {
-        data.forEach(pattern => {
-          (pattern.times || []).forEach(t => {
-            if (t.tripId) realtimeByTrip[t.tripId] = t;
-            const depSec = t.realtimeDeparture ?? t.scheduledDeparture;
-            if (depSec == null) return;
-            realtimeTrips.push({
-              tripId: t.tripId, line: '519',
-              depSec, arrSec: depSec + 10 * 60,
-              delaySec: t.departureDelay || 0,
-              isRealtime: Boolean(t.realtime),
-              realtimeState: t.realtimeState || null,
-              occupancy: 'Faible', cancelled: Boolean(t.cancelled)
+    // 1. Détection temps réel éventuel
+    if (realtimeRes && realtimeRes.ok && realtimeRes.status === 200) {
+      try {
+        const text = await realtimeRes.text();
+        if (text && text.trim().length > 2) {
+          const data = JSON.parse(text);
+          if (Array.isArray(data)) {
+            data.forEach(pattern => {
+              (pattern.times || []).forEach(t => {
+                if (t.tripId) realtimeByTrip[t.tripId] = t;
+                const depSec = t.realtimeDeparture ?? t.scheduledDeparture;
+                if (depSec == null) return;
+                realtimeTrips.push({
+                  tripId: t.tripId,
+                  line: '519',
+                  stopName: 'Edgar Kofler',
+                  destName: 'Voreppe Mairie',
+                  depSec,
+                  arrSec: depSec + 24 * 60,
+                  delaySec: t.departureDelay || 0,
+                  isRealtime: Boolean(t.realtime),
+                  realtimeState: t.realtimeState || null,
+                  occupancy: 'Faible',
+                  cancelled: Boolean(t.cancelled)
+                });
+              });
             });
-          });
-        });
+          }
+        }
+      } catch (e) {
+        console.warn('Erreur lecture temps réel 519:', e);
       }
     }
 
+    // 2. Fiche horaires API si elle répond un jour
     const ficheTrips = [];
-    if (ficheRes.ok) {
-      const ficheData = await ficheRes.json();
-      Object.values(ficheData).forEach(direction => {
-        const arrets = direction.arrets || [];
-        const originStop = arrets.find(a => a.stopId === originStopId);
-        const destStop = arrets.find(a => a.stopId === destStopId);
-        if (!originStop) return;
-        const tripIds = (direction.trips || []).map(t => t.tripId);
-        originStop.trips.forEach((depVal, idx) => {
-          if (depVal === '|' || depVal === null) return;
-          const depSec = Number(depVal);
-          if (isNaN(depSec) || depSec < nowSec - 60) return;
-          const tripId = tripIds[idx] || `sched519-${depSec}`;
-          if (realtimeByTrip[tripId]) return;
-          let arrSec = depSec + 10 * 60;
-          if (destStop) {
-            const arrVal = destStop.trips[idx];
-            if (arrVal !== '|' && arrVal !== null && !isNaN(Number(arrVal))) arrSec = Number(arrVal);
-          }
-          ficheTrips.push({
-            tripId, line: '519', depSec, arrSec,
-            delaySec: 0, isRealtime: false, realtimeState: null,
-            occupancy: 'Faible', cancelled: false
+    if (ficheRes && ficheRes.ok && ficheRes.status === 200) {
+      try {
+        const text = await ficheRes.text();
+        if (text && text.trim().length > 2) {
+          const ficheData = JSON.parse(text);
+          Object.values(ficheData).forEach(direction => {
+            const arrets = direction.arrets || [];
+            const originStop = arrets.find(a => a.stopId === originStopId);
+            const destStop = arrets.find(a => a.stopId === destStopId);
+            if (!originStop) return;
+            const tripIds = (direction.trips || []).map(t => t.tripId);
+            originStop.trips.forEach((depVal, idx) => {
+              if (depVal === '|' || depVal === null) return;
+              const depSec = Number(depVal);
+              if (isNaN(depSec) || depSec < nowSec - 60) return;
+              const tripId = tripIds[idx] || `sched519-${depSec}`;
+              if (realtimeByTrip[tripId]) return;
+              let arrSec = depSec + 24 * 60;
+              if (destStop) {
+                const arrVal = destStop.trips[idx];
+                if (arrVal !== '|' && arrVal !== null && !isNaN(Number(arrVal))) arrSec = Number(arrVal);
+              }
+              ficheTrips.push({
+                tripId,
+                line: '519',
+                stopName: 'Edgar Kofler',
+                destName: 'Voreppe Mairie',
+                depSec,
+                arrSec,
+                delaySec: 0,
+                isRealtime: false,
+                realtimeState: null,
+                occupancy: 'Faible',
+                cancelled: false
+              });
+            });
           });
-        });
-      });
+        }
+      } catch (e) {
+        console.warn('Erreur lecture fiche 519:', e);
+      }
     }
 
-    const allTrips = [...realtimeTrips, ...ficheTrips];
-    allTrips.sort((a, b) => a.depSec - b.depSec);
-    const seen = new Set();
-    const trips519 = allTrips.filter(t => {
-      const key = Math.round(t.depSec / 60);
-      if (seen.has(key)) return false;
-      seen.add(key); return true;
+    // 3. Horaires planifiés officiels (du lundi au vendredi, Edgar Kofler -> Voreppe Mairie)
+    // Garantit l'affichage même si l'API Mobilités M ne diffuse pas de ficheHoraires pour cette ligne
+    const scheduledTrips = [];
+    const todaySchedule = (CONFIG.schedule519Return && CONFIG.schedule519Return[dayOfWeek]) || [];
+    todaySchedule.forEach(item => {
+      const [depH, depM] = item.dep.split(':').map(Number);
+      const [arrH, arrM] = item.arr.split(':').map(Number);
+      const depSec = depH * 3600 + depM * 60;
+      const arrSec = arrH * 3600 + arrM * 60;
+      const tripId = `sched519-${dayOfWeek}-${depSec}`;
+
+      // Ne pas dupliquer si le temps réel ou la fiche API a déjà capté ce passage
+      const hasRealtime = realtimeTrips.some(t => Math.abs(t.depSec - depSec) < 300);
+      const hasFiche = ficheTrips.some(t => Math.abs(t.depSec - depSec) < 300);
+      if (!hasRealtime && !hasFiche) {
+        scheduledTrips.push({
+          tripId,
+          line: '519',
+          stopName: 'Edgar Kofler',
+          destName: 'Voreppe Mairie',
+          depSec,
+          arrSec,
+          delaySec: 0,
+          isRealtime: false,
+          realtimeState: null,
+          occupancy: 'Faible',
+          cancelled: false
+        });
+      }
     });
 
-    // Fusionner avec les trips C13 retour
-    const upcoming519 = trips519.filter(t => t.depSec >= nowSec - 60);
-    const merged = [...state.allTrips, ...(upcoming519.length > 0 ? upcoming519 : trips519)];
+    const allTrips519 = [...realtimeTrips, ...ficheTrips, ...scheduledTrips];
+    allTrips519.sort((a, b) => a.depSec - b.depSec);
+
+    const seen519 = new Set();
+    const trips519 = allTrips519.filter(t => {
+      const key = Math.round(t.depSec / 60);
+      if (seen519.has(key)) return false;
+      seen519.add(key);
+      return true;
+    });
+
+    // Fusionner avec les départs C13
+    const merged = [...state.allTrips, ...trips519];
     merged.sort((a, b) => a.depSec - b.depSec);
+
+    // Dédupliquer par ligne et minute
     const seenMerge = new Set();
     state.allTrips = merged.filter(t => {
-      const key = Math.round(t.depSec / 60);
+      const key = `${t.line}-${Math.round(t.depSec / 60)}`;
       if (seenMerge.has(key)) return false;
-      seenMerge.add(key); return true;
+      seenMerge.add(key);
+      return true;
     });
+
+    // Uniquement les départs à venir aujourd'hui
+    state.allTrips = state.allTrips.filter(t => t.depSec >= nowSec - 60);
     state.nextBus = state.allTrips[0] || null;
 
     renderBusHero();
     renderTimetable();
 
   } catch (err) {
-    console.error('Erreur API 519:', err);
+    console.error('Erreur traitement ligne 519:', err);
   }
 }
 
@@ -631,11 +739,62 @@ async function fetchLine519Data() {
 // ==========================================================================
 function renderBusHero() {
   const next = state.nextBus;
+  const badgeEl = document.getElementById('heroLineBadge');
+
   if (!next) {
+    if (badgeEl) {
+      if (state.direction === 'RETURN') {
+        badgeEl.innerHTML = `<span class="line-badge c13-badge">C13</span><span class="line-badge badge-519" style="margin-left:6px">519</span>`;
+      } else {
+        badgeEl.innerHTML = `<span class="line-badge c13-badge">C13</span>`;
+      }
+    }
     document.getElementById('heroCountdown').textContent = '-- min';
     document.getElementById('heroDepTime').textContent = '--:--';
     document.getElementById('heroArrTime').textContent = '--:--';
+    const durEl = document.getElementById('heroDuration');
+    if (durEl) durEl.textContent = 'Service inactif';
+    const delayBadge = document.getElementById('heroDelayBadge');
+    if (delayBadge) {
+      delayBadge.className = 'delay-badge ontime';
+      delayBadge.textContent = 'Terminé';
+    }
+    const adviceText = document.getElementById('adviceText');
+    const adviceIcon = document.getElementById('adviceIcon');
+    if (adviceText && adviceIcon) {
+      adviceIcon.textContent = '🚌';
+      adviceText.textContent = 'Aucun départ prévu pour le reste de la journée.';
+    }
+    const liveDot = document.getElementById('liveDotInline');
+    if (liveDot) liveDot.classList.add('hidden');
     return;
+  }
+
+  // Mise à jour du numéro de la ligne (C13 ou 519)
+  if (badgeEl) {
+    if (next.line === '519') {
+      badgeEl.innerHTML = `<span class="line-badge badge-519">519</span>`;
+    } else {
+      badgeEl.innerHTML = `<span class="line-badge c13-badge">C13</span>`;
+    }
+  }
+
+  const arrLabelEl = document.getElementById('heroArrLabel');
+  if (arrLabelEl) {
+    if (state.direction === 'RETURN') {
+      arrLabelEl.textContent = next.line === '519' ? 'Arrivée Voreppe Mairie' : 'Arrivée 11 Novembre';
+    } else {
+      arrLabelEl.textContent = 'Arrivée Edgar Kofler';
+    }
+  }
+
+  const stopsSummaryEl = document.getElementById('routeStopsSummary');
+  if (stopsSummaryEl) {
+    if (state.direction === 'GO') {
+      stopsSummaryEl.textContent = 'Arrêt Avenue du 11 Novembre';
+    } else {
+      stopsSummaryEl.textContent = next.line === '519' ? 'Arrêt Edgar Kofler ➔ Voreppe Mairie' : 'Arrêt Edgar Kofler';
+    }
   }
 
   document.getElementById('heroDepTime').textContent = formatSecondsToTime(next.depSec);
@@ -664,7 +823,13 @@ function renderBusHero() {
   }
 
   const liveDot = document.getElementById('liveDotInline');
-  if (liveDot) liveDot.classList.remove('hidden');
+  if (liveDot) {
+    if (next.isRealtime) {
+      liveDot.classList.remove('hidden');
+    } else {
+      liveDot.classList.add('hidden');
+    }
+  }
 
   updateHeroCountdown();
 }
@@ -701,21 +866,24 @@ function updateHeroCountdown() {
   }
 
   if (adviceIcon && adviceText) {
+    const lineName = next.line === '519' ? '519' : 'C13';
+    const stopTarget = state.direction === 'GO' ? "l'arrêt 11 Novembre" : "l'arrêt Edgar Kofler";
+
     if (diffMin > 18) {
       adviceIcon.textContent = '☕';
-      adviceText.textContent = `Prochain départ dans ${diffMin} min. Tu as le temps.`;
+      adviceText.textContent = `Prochain départ (${lineName}) dans ${diffMin} min. Tu as le temps.`;
     } else if (diffMin >= 8 && diffMin <= 18) {
       adviceIcon.textContent = '🎒';
-      adviceText.textContent = `Départ dans ${diffMin} min. Prépare ton sac et tes affaires.`;
+      adviceText.textContent = `Départ (${lineName}) dans ${diffMin} min. Prépare ton sac et tes affaires.`;
     } else if (diffMin >= 3 && diffMin < 8) {
       adviceIcon.textContent = '👟';
-      adviceText.textContent = `Départ dans ${diffMin} min. Pars vers l'arrêt 11 Novembre !`;
+      adviceText.textContent = `Départ dans ${diffMin} min. Pars vers ${stopTarget} !`;
     } else if (diffMin >= 0 && diffMin < 3) {
       adviceIcon.textContent = '🏃‍♂️';
       adviceText.textContent = `Bus imminent dans ${diffMin + 1} min à l'arrêt !`;
     } else {
       adviceIcon.textContent = '🚌';
-      adviceText.textContent = 'Le bus C13 passe actuellement.';
+      adviceText.textContent = `Le bus ${lineName} passe actuellement.`;
     }
   }
 }
@@ -726,10 +894,16 @@ function renderTimetable() {
   if (!container) return;
 
   const trips = state.allTrips.slice(1, 6);
-  if (countEl) countEl.textContent = `${trips.length + (state.nextBus ? 1 : 0)} départs`;
+  const total = trips.length + (state.nextBus ? 1 : 0);
+  if (countEl) countEl.textContent = `${total} départ${total > 1 ? 's' : ''}`;
+
+  if (!state.nextBus && trips.length === 0) {
+    container.innerHTML = `<div class="empty-state"><p>Aucun départ prévu pour le reste de la journée.</p></div>`;
+    return;
+  }
 
   if (trips.length === 0) {
-    container.innerHTML = `<div class="empty-state"><p>Pas d'autre départ immédiat.</p></div>`;
+    container.innerHTML = `<div class="empty-state"><p>Pas d'autre départ prévu aujourd'hui.</p></div>`;
     return;
   }
 
@@ -740,15 +914,16 @@ function renderTimetable() {
     const arrTime = formatSecondsToTime(t.arrSec);
     const diffMin = Math.round((t.depSec - nowSec) / 60);
     const durationMin = Math.round((t.arrSec - t.depSec) / 60);
+    const is519 = t.line === '519';
 
     return `
       <div class="trip-item">
         <div class="trip-left">
           <span class="trip-dep-time">${depTime}</span>
-          <span class="trip-meta">dans ${diffMin} min</span>
+          <span class="trip-meta">${diffMin >= 0 ? `dans ${diffMin} min` : 'passé'}</span>
         </div>
         <div class="trip-right">
-          ${t.line === '519' ? '<span class="line-badge" style="font-size:0.7rem;padding:2px 6px;background:#78520D">519</span>' : ''}
+          <span class="line-badge-small ${is519 ? 'badge-519' : 'badge-c13'}">${is519 ? '519' : 'C13'}</span>
           <span class="trip-arr-time">${arrTime}</span>
           <span class="trip-duration-tag">~${durationMin} min</span>
         </div>
@@ -945,7 +1120,7 @@ function initChecklist() {
         const id = input.getAttribute('data-id');
         if (stateObj[id] !== undefined) input.checked = stateObj[id];
       });
-    } catch (e) {}
+    } catch (e) { }
   }
 
   document.querySelectorAll('.check-input').forEach(input => {
@@ -1008,7 +1183,7 @@ function playMorningChime() {
       osc.start(ctx.currentTime + idx * 0.15);
       osc.stop(ctx.currentTime + idx * 0.15 + 0.55);
     });
-  } catch (e) {}
+  } catch (e) { }
 }
 
 function getSecondsFromMidnight() {
