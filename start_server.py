@@ -23,7 +23,7 @@ def main():
     with socketserver.TCPServer(("", PORT), Handler) as httpd:
         url = f"http://localhost:{PORT}/index.html"
         print("=" * 60)
-        print("[*] Good Morning Dashboard - Bus C13 & Meteo Lycee")
+        print("[*] Good Morning Dashboard - Bus & Meteo Lycee")
         print(f"[>] Serveur actif sur : {url}")
         print("=" * 60)
         print("Appuyez sur Ctrl+C pour arreter le serveur.")
