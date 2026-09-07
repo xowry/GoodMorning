@@ -4,9 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< Updated upstream
   <title>Morning Dashboard</title>
   <meta name="description"
     content="Dashboard Voreppe -> Voiron Edgar Kofler, météo matin/après-midi et emploi du temps lycée.">
+=======
+  <title>Morning Dashboard - Bus & Lycée</title>
+  <meta name="description" content="Dashboard épuré du matin : Bus C13 Voreppe -> Voiron Edgar Kofler, météo matin/après-midi et emploi du temps lycée.">
+>>>>>>> Stashed changes
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +35,13 @@
           <span class="greeting-dot"></span>
           <span id="greetingText">Bonjour !</span>
         </div>
-        <h1 class="main-title"><span class="highlight">Voreppe ⇄ Voiron</span></h1>
+        <div class="main-title-row">
+          <h1 class="main-title"><span class="highlight">Voreppe ⇄ Voiron</span></h1>
+          <span class="title-line-badges">
+            <span class="line-badge c13-badge"><span class="c13-letter">C</span><span class="c13-number">13</span></span>
+            <span class="line-badge hero-badge-519">519</span>
+          </span>
+        </div>
         <p class="subtitle" id="routeSubTitle">11 Novembre ➔ Edgar Kofler</p>
       </div>
 
@@ -79,7 +90,11 @@
         <div class="card card-hero-bus" id="heroBusCard">
           <div class="card-header-flex">
             <div class="line-badge-group">
+<<<<<<< Updated upstream
               <span id="heroLineBadge"><span class="line-badge c13-badge">C13</span></span>
+=======
+              <span id="heroLineBadge" class="line-badge c13-badge"><span class="c13-letter">C</span><span class="c13-number">13</span></span>
+>>>>>>> Stashed changes
               <div class="route-info">
                 <span class="route-direction-label" id="routeDirectionLabel">Direction Voiron</span>
                 <span class="route-stops-summary" id="routeStopsSummary">Arrêt Avenue du 11 Novembre</span>
