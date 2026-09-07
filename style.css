@@ -154,6 +154,39 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* Badges de ligne (C13 + 519) affichés à côté du titre */
+.main-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.title-line-badges {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Version compacte des badges à côté du titre (taille intermédiaire) */
+.title-line-badges .c13-badge {
+  width: 22px;
+  height: 22px;
+}
+
+.title-line-badges .c13-letter,
+.title-line-badges .c13-number {
+  font-size: 0.54rem;
+}
+
+.title-line-badges .hero-badge-519 {
+  min-width: 22px;
+  height: 22px;
+  font-size: 0.58rem;
+  padding: 0 6px;
+  border-radius: 6px;
+}
+
 .subtitle {
   font-size: 0.82rem;
   color: var(--text-secondary);
@@ -381,8 +414,33 @@ body {
   flex-shrink: 0;
 }
 
+<<<<<<< Updated upstream
 /* Badge Ligne 519 */
 .badge-519 {
+=======
+/* Badge 519 dans le hero (même gabarit que le badge C13) */
+.hero-badge-519 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  padding: 0 10px;
+  border-radius: 10px;
+  background: #78520D;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  box-shadow: none;
+}
+
+/* Badges de ligne dans le timetable (liste des prochains départs) */
+.trip-line-badge {
+>>>>>>> Stashed changes
   display: inline-flex;
   align-items: center;
   justify-content: center;

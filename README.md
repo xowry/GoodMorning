@@ -1,4 +1,4 @@
-# 🌅 Good Morning Dashboard - Bus C13 & Météo Lycée
+# 🌅 Good Morning Dashboard - Bus & Météo Lycée
 
 Dashboard interactif du matin spécialement conçu pour un lycéen se rendant à Voiron depuis Voreppe.
 

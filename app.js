@@ -799,6 +799,7 @@ function renderBusHero() {
     return;
   }
 
+<<<<<<< Updated upstream
   // Mise à jour du numéro de la ligne (C13 ou 519)
   if (badgeEl) {
     if (next.line === '519') {
@@ -823,6 +824,17 @@ function renderBusHero() {
       stopsSummaryEl.textContent = 'Arrêt Avenue du 11 Novembre';
     } else {
       stopsSummaryEl.textContent = next.line === '519' ? 'Arrêt Edgar Kofler ➔ Voreppe Mairie' : 'Arrêt Edgar Kofler';
+=======
+  // Badge de ligne : 519 ou C13 selon le prochain bus
+  const lineBadge = document.getElementById('heroLineBadge');
+  if (lineBadge) {
+    if (next.line === '519') {
+      lineBadge.className = 'line-badge hero-badge-519';
+      lineBadge.textContent = '519';
+    } else {
+      lineBadge.className = 'line-badge c13-badge';
+      lineBadge.innerHTML = '<span class="c13-letter">C</span><span class="c13-number">13</span>';
+>>>>>>> Stashed changes
     }
   }
 
