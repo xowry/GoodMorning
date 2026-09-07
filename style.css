@@ -347,44 +347,62 @@ body {
   background: var(--c13-color);
 }
 
-/* Badge C13 fidèle au design Chrono Péri */
+/* Badge C13 : cercle orange plein façon M réso (sans halo) */
 .c13-badge {
   display: inline-flex;
-  align-items: stretch;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
   padding: 0;
-  border-radius: 6px;
-  overflow: hidden;
-  background: transparent;
+  border-radius: 50%;
+  background: var(--c13-color);
   border: none;
-  gap: 0;
-  box-shadow: 0 2px 8px rgba(239,124,0,0.45);
+  box-shadow: none;
+  overflow: hidden;
 }
 
-.c13-letter {
-  background: #ef7c00;
-  color: #fff;
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-size: 1.15rem;
-  padding: 4px 9px 4px 10px;
-  letter-spacing: 0.02em;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-}
-
+.c13-letter,
 .c13-number {
-  background: #1a1a2e;
+  background: transparent;
   color: #fff;
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 1.15rem;
-  padding: 4px 10px 4px 9px;
-  letter-spacing: 0.02em;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
   line-height: 1;
-  display: flex;
+  padding: 0;
+  border: none;
+  display: inline;
+}
+
+/* Badges de ligne dans le timetable (liste des prochains départs) */
+.trip-line-badge {
+  display: inline-flex;
   align-items: center;
-  border-left: 2px solid rgba(255,255,255,0.25);
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.7rem;
+  color: #fff;
+  line-height: 1;
+}
+
+/* C13 : cercle orange plein, cohérent avec le badge du hero */
+.trip-line-c13 {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--c13-color);
+}
+
+/* 519 : pastille arrondie (ton d'origine) */
+.trip-line-519 {
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: #78520D;
 }
 
 .route-info {

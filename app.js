@@ -5,20 +5,31 @@
 
 const CONFIG = {
   lineId: 'SE2:C13',
-  line519Id: 'TPV:519',
   voreppe: {
     name: 'Avenue du 11 Novembre',
     city: 'Voreppe',
     stopGo: 'SE2:9027',
     stopReturn: 'SE2:9028',
-    stopReturn519: 'TPV:1000914', // Voreppe Mairie (arrivée 519)
   },
   voiron: {
     name: 'Edgar Kofler',
     city: 'Voiron',
     stopGo: 'SE2:9031',
     stopReturn: 'SE2:9032',
-    stopReturn519: 'TPV:1000866', // Edgar Kofler (départ 519)
+  },
+  // Ligne 519 : pas de temps réel disponible, horaires fixes codés en dur.
+  // dayOfWeek : 1=Lundi ... 5=Vendredi. depSec/arrSec = secondes depuis minuit.
+  line519Schedule: {
+    GO: [
+      // Voreppe 11 Novembre -> Edgar Kofler, lun-ven
+      { days: [1, 2, 3, 4, 5], depSec: 7 * 3600 + 2 * 60, arrSec: 7 * 3600 + 25 * 60, arrName: 'Edgar Kofler' },
+    ],
+    RETURN: [
+      // Edgar Kofler -> Mairie de Voreppe, lun/mar/jeu/ven
+      { days: [1, 2, 4, 5], depSec: 17 * 3600 + 25 * 60, arrSec: 17 * 3600 + 49 * 60, arrName: 'Mairie de Voreppe' },
+      // Edgar Kofler -> Voreppe 11 Novembre, mercredi
+      { days: [3], depSec: 12 * 3600 + 21 * 60, arrSec: 12 * 3600 + 46 * 60, arrName: 'Voreppe 11 Novembre' },
+    ],
   },
   weatherCoords: {
     lat: 45.298,
@@ -36,40 +47,14 @@ const CONFIG = {
     { depSec: 8*3600+7*60,  arrSec: 8*3600+30*60 },
     { depSec: 8*3600+30*60, arrSec: 8*3600+53*60 },
   ],
-  // Horaires hebdomadaires fournis par l'utilisateur
+  // Emploi du temps vide par défaut : rempli par l'ICS Pronote (agenda.ics).
+  // Aucune donnée factice ici, on n'affiche que le vrai calendrier.
   defaultWeeklySchedule: {
-    1: { name: 'Lundi', startTime: '08:30', courses: [
-      { time: '08:30 - 09:30', subject: 'Mathématiques', room: 'B204', teacher: 'M. Lambert', code: 'maths' },
-      { time: '09:30 - 10:30', subject: 'Histoire-Géographie', room: 'A102', teacher: 'Mme Girard', code: 'histoire' },
-      { time: '10:45 - 12:45', subject: 'Physique-Chimie', room: 'Labo 2', teacher: 'M. Perrin', code: 'physique' },
-      { time: '14:00 - 16:00', subject: 'Anglais LV1', room: 'C301', teacher: 'Mme Smith', code: 'anglais' },
-      { time: '16:00 - 17:00', subject: 'Français', room: 'B105', teacher: 'Mme Roux', code: 'francais' }
-    ]},
-    2: { name: 'Mardi', startTime: '08:55', courses: [
-      { time: '08:55 - 09:55', subject: 'Français', room: 'B105', teacher: 'Mme Roux', code: 'francais' },
-      { time: '09:55 - 11:55', subject: 'SVT (Sciences)', room: 'Labo SVT 1', teacher: 'M. Morel', code: 'svt' },
-      { time: '13:30 - 15:30', subject: 'EPS (Sport)', room: 'Gymnase Kofler', teacher: 'M. Fabre', code: 'eps' },
-      { time: '15:45 - 17:45', subject: 'Espagnol LV2', room: 'C203', teacher: 'Mme Garcia', code: 'anglais' }
-    ]},
-    3: { name: 'Mercredi', startTime: '08:00', courses: [
-      { time: '08:00 - 10:00', subject: 'Mathématiques', room: 'B204', teacher: 'M. Lambert', code: 'maths' },
-      { time: '10:15 - 11:15', subject: 'Histoire-Géographie', room: 'A102', teacher: 'Mme Girard', code: 'histoire' },
-      { time: '11:15 - 12:15', subject: 'Enseignement Scientifique', room: 'Amphi 1', teacher: 'Mme Bonnet', code: 'physique' }
-    ]},
-    4: { name: 'Jeudi', startTime: '08:30', courses: [
-      { time: '08:30 - 10:30', subject: 'Physique-Chimie', room: 'Labo 2', teacher: 'M. Perrin', code: 'physique' },
-      { time: '10:45 - 11:45', subject: 'Français', room: 'B105', teacher: 'Mme Roux', code: 'francais' },
-      { time: '11:45 - 12:45', subject: 'Anglais LV1', room: 'C301', teacher: 'Mme Smith', code: 'anglais' },
-      { time: '14:00 - 16:00', subject: 'Mathématiques', room: 'B204', teacher: 'M. Lambert', code: 'maths' },
-      { time: '16:00 - 17:00', subject: 'EMC / Vie de classe', room: 'A102', teacher: 'Mme Girard', code: 'histoire' }
-    ]},
-    5: { name: 'Vendredi', startTime: '08:30', courses: [
-      { time: '08:30 - 09:30', subject: 'Français', room: 'B105', teacher: 'Mme Roux', code: 'francais' },
-      { time: '09:30 - 11:30', subject: 'Mathématiques', room: 'B204', teacher: 'M. Lambert', code: 'maths' },
-      { time: '11:30 - 12:30', subject: 'Histoire-Géographie', room: 'A102', teacher: 'Mme Girard', code: 'histoire' },
-      { time: '14:00 - 15:00', subject: 'Espagnol LV2', room: 'C203', teacher: 'Mme Garcia', code: 'anglais' },
-      { time: '15:15 - 17:15', subject: 'SVT (Sciences)', room: 'Labo SVT 1', teacher: 'M. Morel', code: 'svt' }
-    ]},
+    1: { name: 'Lundi', startTime: null, courses: [] },
+    2: { name: 'Mardi', startTime: null, courses: [] },
+    3: { name: 'Mercredi', startTime: null, courses: [] },
+    4: { name: 'Jeudi', startTime: null, courses: [] },
+    5: { name: 'Vendredi', startTime: null, courses: [] },
     6: { name: 'Samedi', startTime: null, courses: [] },
     0: { name: 'Dimanche', startTime: null, courses: [] }
   }
@@ -264,9 +249,12 @@ async function fetchAllData(manual = false) {
     await Promise.all([
       fetchBusC13Data(),
       fetchWeatherData(),
-      fetchPronoteSchedule(),
-      ...(state.direction === 'RETURN' ? [fetchLine519Data()] : [])
+      fetchPronoteSchedule()
     ]);
+
+    // Le 519 n'a pas de temps réel : on injecte ses horaires fixes
+    // après le C13 (qui a rempli state.allTrips) dans les deux sens.
+    injectLine519Trips();
 
     renderSchedule();
 
@@ -528,102 +516,49 @@ async function fetchBusC13Data() {
 
 
 // ==========================================================================
-// LIGNE 519 (RETOUR UNIQUEMENT)
+// LIGNE 519 (HORAIRES FIXES — PAS DE TEMPS RÉEL)
 // ==========================================================================
-async function fetchLine519Data() {
-  const originStopId = CONFIG.voiron.stopReturn519;
-  const destStopId = CONFIG.voreppe.stopReturn519;
+function injectLine519Trips() {
+  const schedule = CONFIG.line519Schedule[state.direction];
+  if (!schedule || schedule.length === 0) return;
 
-  try {
-    const realtimeUrl = `https://data.mobilites-m.fr/api/routers/default/index/stops/${originStopId}/stoptimes`;
-    const ficheUrl = `https://data.mobilites-m.fr/api/ficheHoraires/json?route=${CONFIG.line519Id.replace(':', '_')}`;
+  const today = new Date().getDay(); // 0=dim, 1=lun...6=sam
+  const nowSec = getSecondsFromMidnight();
 
-    const [realtimeRes, ficheRes] = await Promise.all([
-      fetch(realtimeUrl, { headers: { Origin: 'goodmorning-dashboard' } }),
-      fetch(ficheUrl, { headers: { Origin: 'goodmorning-dashboard' } })
-    ]);
+  const trips519 = schedule
+    .filter(s => s.days.includes(today))
+    .map(s => ({
+      tripId: `519-${state.direction}-${s.depSec}`,
+      line: '519',
+      depSec: s.depSec,
+      arrSec: s.arrSec,
+      arrName: s.arrName,
+      delaySec: 0,
+      isRealtime: false,
+      realtimeState: null,
+      occupancy: 'Faible',
+      cancelled: false
+    }));
 
-    const nowSec = getSecondsFromMidnight();
-    const realtimeByTrip = {};
-    const realtimeTrips = [];
+  // Ne garder que les courses encore à venir (marge d'1 min).
+  // Pas de repli sur les courses passées : une course écoulée ne doit jamais réapparaître.
+  const toAdd = trips519.filter(t => t.depSec >= nowSec - 60);
+  if (toAdd.length === 0) return;
 
-    if (realtimeRes.ok) {
-      const data = await realtimeRes.json();
-      if (Array.isArray(data)) {
-        data.forEach(pattern => {
-          (pattern.times || []).forEach(t => {
-            if (t.tripId) realtimeByTrip[t.tripId] = t;
-            const depSec = t.realtimeDeparture ?? t.scheduledDeparture;
-            if (depSec == null) return;
-            realtimeTrips.push({
-              tripId: t.tripId, line: '519',
-              depSec, arrSec: depSec + 10 * 60,
-              delaySec: t.departureDelay || 0,
-              isRealtime: Boolean(t.realtime),
-              realtimeState: t.realtimeState || null,
-              occupancy: 'Faible', cancelled: Boolean(t.cancelled)
-            });
-          });
-        });
-      }
-    }
+  // Fusionner avec les trips C13 déjà présents, dédupliquer par minute
+  const merged = [...state.allTrips, ...toAdd];
+  merged.sort((a, b) => a.depSec - b.depSec);
+  const seenMin = new Set();
+  state.allTrips = merged.filter(t => {
+    const key = Math.round(t.depSec / 60);
+    if (seenMin.has(key)) return false;
+    seenMin.add(key);
+    return true;
+  });
+  state.nextBus = state.allTrips[0] || null;
 
-    const ficheTrips = [];
-    if (ficheRes.ok) {
-      const ficheData = await ficheRes.json();
-      Object.values(ficheData).forEach(direction => {
-        const arrets = direction.arrets || [];
-        const originStop = arrets.find(a => a.stopId === originStopId);
-        const destStop = arrets.find(a => a.stopId === destStopId);
-        if (!originStop) return;
-        const tripIds = (direction.trips || []).map(t => t.tripId);
-        originStop.trips.forEach((depVal, idx) => {
-          if (depVal === '|' || depVal === null) return;
-          const depSec = Number(depVal);
-          if (isNaN(depSec) || depSec < nowSec - 60) return;
-          const tripId = tripIds[idx] || `sched519-${depSec}`;
-          if (realtimeByTrip[tripId]) return;
-          let arrSec = depSec + 10 * 60;
-          if (destStop) {
-            const arrVal = destStop.trips[idx];
-            if (arrVal !== '|' && arrVal !== null && !isNaN(Number(arrVal))) arrSec = Number(arrVal);
-          }
-          ficheTrips.push({
-            tripId, line: '519', depSec, arrSec,
-            delaySec: 0, isRealtime: false, realtimeState: null,
-            occupancy: 'Faible', cancelled: false
-          });
-        });
-      });
-    }
-
-    const allTrips = [...realtimeTrips, ...ficheTrips];
-    allTrips.sort((a, b) => a.depSec - b.depSec);
-    const seen = new Set();
-    const trips519 = allTrips.filter(t => {
-      const key = Math.round(t.depSec / 60);
-      if (seen.has(key)) return false;
-      seen.add(key); return true;
-    });
-
-    // Fusionner avec les trips C13 retour
-    const upcoming519 = trips519.filter(t => t.depSec >= nowSec - 60);
-    const merged = [...state.allTrips, ...(upcoming519.length > 0 ? upcoming519 : trips519)];
-    merged.sort((a, b) => a.depSec - b.depSec);
-    const seenMerge = new Set();
-    state.allTrips = merged.filter(t => {
-      const key = Math.round(t.depSec / 60);
-      if (seenMerge.has(key)) return false;
-      seenMerge.add(key); return true;
-    });
-    state.nextBus = state.allTrips[0] || null;
-
-    renderBusHero();
-    renderTimetable();
-
-  } catch (err) {
-    console.error('Erreur API 519:', err);
-  }
+  renderBusHero();
+  renderTimetable();
 }
 
 // ==========================================================================
@@ -726,7 +661,7 @@ function renderTimetable() {
   if (!container) return;
 
   const trips = state.allTrips.slice(1, 6);
-  if (countEl) countEl.textContent = `${trips.length + (state.nextBus ? 1 : 0)} départs`;
+  if (countEl) countEl.textContent = `${trips.length} départs`;
 
   if (trips.length === 0) {
     container.innerHTML = `<div class="empty-state"><p>Pas d'autre départ immédiat.</p></div>`;
@@ -748,7 +683,9 @@ function renderTimetable() {
           <span class="trip-meta">dans ${diffMin} min</span>
         </div>
         <div class="trip-right">
-          ${t.line === '519' ? '<span class="line-badge" style="font-size:0.7rem;padding:2px 6px;background:#78520D">519</span>' : ''}
+          ${t.line === '519'
+            ? '<span class="trip-line-badge trip-line-519">519</span>'
+            : '<span class="trip-line-badge trip-line-c13">C13</span>'}
           <span class="trip-arr-time">${arrTime}</span>
           <span class="trip-duration-tag">~${durationMin} min</span>
         </div>
@@ -861,6 +798,23 @@ function getWeatherInfo(code, isDay = 1) {
 // ==========================================================================
 // EMPLOI DU TEMPS DU LYCÉE
 // ==========================================================================
+
+// Heure de fin (secondes depuis minuit) du dernier cours de la journée.
+// Les cours ont un champ time du type "08:30 - 09:30". Retourne null si indéterminé.
+function getScheduleEndSec(daySchedule) {
+  if (!daySchedule || !Array.isArray(daySchedule.courses) || daySchedule.courses.length === 0) {
+    return null;
+  }
+  let maxEnd = null;
+  for (const c of daySchedule.courses) {
+    const m = /(\d{1,2})[:h](\d{2})\s*[-–]\s*(\d{1,2})[:h](\d{2})/.exec(c.time || '');
+    if (!m) continue;
+    const endSec = Number(m[3]) * 3600 + Number(m[4]) * 60;
+    if (maxEnd == null || endSec > maxEnd) maxEnd = endSec;
+  }
+  return maxEnd;
+}
+
 function renderSchedule() {
   const isTomorrow = state.activeScheduleTab === 'TOMORROW';
   const targetDate = new Date();
@@ -871,9 +825,13 @@ function renderSchedule() {
 
   const dayNameEl = document.getElementById('summaryDayName');
   const startTimeEl = document.getElementById('summaryStartTime');
+  const scheduleLabelEl = document.getElementById('summaryScheduleLabel');
   const busTimeEl = document.getElementById('summaryBusTime');
   const busMarginEl = document.getElementById('summaryBusMargin');
   const container = document.getElementById('coursesList');
+
+  const isReturn = state.direction === 'RETURN';
+  if (scheduleLabelEl) scheduleLabelEl.textContent = isReturn ? 'Fin des cours :' : 'Début des cours :';
 
   const options = { weekday: 'long', day: 'numeric', month: 'long' };
   if (dayNameEl) dayNameEl.textContent = targetDate.toLocaleDateString('fr-FR', options);
@@ -888,14 +846,46 @@ function renderSchedule() {
     return;
   }
 
-  if (startTimeEl) startTimeEl.textContent = daySchedule.startTime.replace(':', 'h');
+  // La liste des cours est identique quelle que soit la direction.
+  renderCoursesList(daySchedule);
 
-  // Bus conseillé : dernier trip qui arrive à Voiron avec au moins 10 min d'avance
+  const MARGIN_SEC = 15 * 60;
+
+  if (isReturn) {
+    // RETOUR : premier bus qui part APRÈS la fin des cours de la journée.
+    const endSec = getScheduleEndSec(daySchedule);
+    if (startTimeEl) {
+      startTimeEl.textContent = endSec != null
+        ? formatSecondsToTime(endSec).replace(':', 'h')
+        : '-';
+    }
+
+    if (endSec == null) {
+      if (busTimeEl) busTimeEl.textContent = '-';
+      if (busMarginEl) busMarginEl.textContent = '(fin des cours inconnue)';
+    } else {
+      const advisedTrip = state.allTrips
+        .filter(t => t.depSec >= endSec)
+        .sort((a, b) => a.depSec - b.depSec)[0];
+
+      if (advisedTrip) {
+        const waitMin = Math.round((advisedTrip.depSec - endSec) / 60);
+        if (busTimeEl) busTimeEl.textContent = formatSecondsToTime(advisedTrip.depSec).replace(':', 'h');
+        if (busMarginEl) busMarginEl.textContent = `(${waitMin} min après les cours)`;
+      } else {
+        if (busTimeEl) busTimeEl.textContent = '-';
+        if (busMarginEl) busMarginEl.textContent = '(aucun bus après les cours)';
+      }
+    }
+    return;
+  }
+
+  // ALLER : dernier trip qui arrive à Voiron avec au moins 15 min d'avance
+  if (startTimeEl) startTimeEl.textContent = daySchedule.startTime.replace(':', 'h');
   const [classH, classM] = daySchedule.startTime.split(':').map(Number);
   const classSec = classH * 3600 + classM * 60;
 
   // Chercher dans les trips API, sinon fallback sur la liste statique
-  const MARGIN_SEC = 15 * 60;
   const apiCandidates = state.allTrips.filter(t => t.arrSec <= classSec - MARGIN_SEC);
   const tripsToSearch = apiCandidates.length > 0 ? state.allTrips : CONFIG.fallbackTrips;
   const advisedTrip = tripsToSearch
@@ -910,27 +900,30 @@ function renderSchedule() {
     if (busTimeEl) busTimeEl.textContent = '-';
     if (busMarginEl) busMarginEl.textContent = '(aucun bus disponible)';
   }
+}
 
-  // Liste des cours
-  if (container) {
-    if (!daySchedule.courses || daySchedule.courses.length === 0) {
-      container.innerHTML = `<div class="empty-state"><p>Aucun cours enregistré.</p></div>`;
-      return;
-    }
+// Rend la liste des cours du jour (indépendante de la direction).
+function renderCoursesList(daySchedule) {
+  const container = document.getElementById('coursesList');
+  if (!container) return;
 
-    container.innerHTML = daySchedule.courses.map((c, idx) => `
-      <div class="course-item is-${c.code || 'maths'}">
-        <div class="course-left">
-          <span class="course-subject">${c.subject}</span>
-          <span class="course-teacher">${c.teacher}</span>
-        </div>
-        <div class="course-right">
-          <span class="course-time">${c.time}</span>
-          <span class="course-room-badge">${c.room}</span>
-        </div>
-      </div>
-    `).join('');
+  if (!daySchedule.courses || daySchedule.courses.length === 0) {
+    container.innerHTML = `<div class="empty-state"><p>Aucun cours enregistré.</p></div>`;
+    return;
   }
+
+  container.innerHTML = daySchedule.courses.map((c) => `
+    <div class="course-item is-${c.code || 'maths'}">
+      <div class="course-left">
+        <span class="course-subject">${c.subject}</span>
+        <span class="course-teacher">${c.teacher}</span>
+      </div>
+      <div class="course-right">
+        <span class="course-time">${c.time}</span>
+        <span class="course-room-badge">${c.room}</span>
+      </div>
+    </div>
+  `).join('');
 }
 
 // ==========================================================================
